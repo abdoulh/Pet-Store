@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         email: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         password: {
             type: DataTypes.STRING,
@@ -19,14 +20,16 @@ module.exports = (sequelize, DataTypes) => {
         },
         role: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            defaultValue: "customer"
+
         },
         createdAt: {
             type: DataTypes.DATEONLY,
             allowNull: false,
             defaultValue: DataTypes.NOW
         },
-        updateAt: {
+        updatedAt: {
             type: DataTypes.DATEONLY,
             allowNull: false,
             defaultValue: DataTypes.NOW
