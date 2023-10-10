@@ -32,6 +32,7 @@ const connect = async () => {
 
 }
 
+db.sequelize.sync({ force: true })
 
 connect()
 

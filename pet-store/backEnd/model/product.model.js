@@ -1,12 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
     const Product = sequelize.define('Product', {
 
-        Name: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        Category: {
-            type: DataTypes.STRING,
+        category: {
+            type: DataTypes.ENUM('Food', 'Toy', 'Upholstery'),
+            allowNull: false
+        },
+        animal: {
+            type: DataTypes.ENUM('Dog', 'Cat'),
             allowNull: false
         },
         imageUrl: {
@@ -18,13 +22,24 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         price: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.FLOAT,
             allowNull: false
+        },
+        createdAt: {
+            type: DataTypes.DATEONLY,
+            allowNull: false,
+            defaultValue: DataTypes.NOW
+        },
+        updatedAt: {
+            type: DataTypes.DATEONLY,
+            allowNull: false,
+            defaultValue: DataTypes.NOW
         }
+
 
     });
 
-    return User;
+    return Product;
 
 
 }
