@@ -2,7 +2,6 @@ const express = require('express')
 const cors = require('cors')
 const usersRouter = require('./routes/users')
 const productsRouter = require('./routes/products')
-=======
 
 
 const app = express()
