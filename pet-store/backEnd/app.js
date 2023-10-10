@@ -2,6 +2,8 @@ const express = require('express')
 const cors = require('cors')
 const usersRouter = require('./routes/users')
 const productsRouter = require('./routes/products')
+=======
+
 
 const app = express()
 const port = 3000
@@ -11,8 +13,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.use('/api', usersRouter, productsRouter)
-
+app.use('/api', usersRouter)
+app.use('/api', productsRouter)
 
 
 

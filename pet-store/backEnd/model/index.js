@@ -1,6 +1,8 @@
 const { Sequelize, DataTypes } = require('sequelize')
 
-const sequelize = new Sequelize('PetsDB', 'root', '1234',
+
+
+const sequelize = new Sequelize('PetsDB', 'root', 'root',
     {
         host: 'localhost',
         dialect: "mysql",
@@ -33,6 +35,7 @@ const connect = async () => {
 }
 
 //db.sequelize.sync({ force: true })
+
 
 connect()
 
