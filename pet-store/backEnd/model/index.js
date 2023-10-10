@@ -1,7 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize')
 
-
-
 const sequelize = new Sequelize('PetsDB', 'root', 'root',
     {
         host: 'localhost',
