@@ -9,5 +9,20 @@ module.exports = {
             console.log(error)
             res.status(500).send(error)
         }
+    },
+
+    deleteUser: async (req, res)=> {
+        const userId = req.params.id;
+        try{
+            const deletedUser = await User.destroy({where:{ id:userId} })
+            res.status(202).json(deletedUser);
+        } catch (error) {
+            console.log(error)
+            res.status(500).send(error)
+        }
     }
 };
+  
+    }
+};
+
