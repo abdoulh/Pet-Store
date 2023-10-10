@@ -11,10 +11,10 @@ module.exports = {
         }
     },
 
-    deleteUser: async (req, res)=> {
+    deleteUser: async (req, res) => {
         const userId = req.params.id;
-        try{
-            const deletedUser = await User.destroy({where:{ id:userId} })
+        try {
+            const deletedUser = await User.destroy({ where: { id: userId } })
             res.status(202).json(deletedUser);
         } catch (error) {
             console.log(error)
@@ -22,7 +22,7 @@ module.exports = {
         }
     }
 };
-  
-    }
-};
+
+
+
 
