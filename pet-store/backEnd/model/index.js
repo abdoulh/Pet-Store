@@ -34,7 +34,7 @@ const connect = async () => {
 }
 
 
-// db.sequelize.sync({ force: true })
+//db.sequelize.sync({ force: true })
 
 connect()
 

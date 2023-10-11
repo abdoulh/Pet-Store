@@ -101,7 +101,7 @@ const Navbar = () => {
             href="Login"
             className="btn btn-lg btn-primary px-3 d-none d-lg-block"
           >
-            Order Now
+           My Cart
           </a>
 
 

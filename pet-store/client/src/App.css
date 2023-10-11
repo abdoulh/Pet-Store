@@ -9850,3 +9850,7 @@ h6 {
 .show > .btn-primary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(240, 123, 84, 0.5);
 }
+img{
+  height:50%;
+  width:50%
+}

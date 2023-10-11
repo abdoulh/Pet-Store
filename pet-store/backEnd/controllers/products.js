@@ -10,17 +10,7 @@ module.exports={
             res.status(500).send(error)
         }
     },
-    getOneProduct:async(req,res)=>{
-        try{
-            const products = await Product.findOne();
-            res.status(200).json(products);
-        } catch (error) {
-            console.log(error)
-            res.status(500).send(error)
-        }
-
-        },
-    
+   
     createProduct: async (req, res) =>  {
         try{
             const {name, category, animal, imageUrl, description, price} = req.body
