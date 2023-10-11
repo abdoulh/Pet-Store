@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-
+import '/index.css'
 
 const UsersList = () => {
 
@@ -18,6 +18,12 @@ useEffect(() => {
 
     fetchUsers();
 }, []);
+
+return (
+    <div>
+        
+    </div>
+)
 
 
 }
