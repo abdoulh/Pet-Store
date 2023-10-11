@@ -36,7 +36,7 @@ const Navbar = () => {
           id="navbarCollapse"
         >
           <div className="navbar-nav mr-auto py-0">
-            <a href="index.html" className="nav-item nav-link active">
+            <a href="HomePage" className="nav-item nav-link active">
               Home
             </a>
 

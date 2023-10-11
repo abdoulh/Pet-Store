@@ -1,5 +1,5 @@
 import React from "react";
-import ProductList from "./ProductList";
+import ProductList from "./ProductList.jsx";
 import Navbar from "./Navbar.jsx";
 
 const HomePage = (props) => {
@@ -12,11 +12,11 @@ const HomePage = (props) => {
           <h1 className="display-4 m-0"><span className="text-primary">Premium</span> Pet Services</h1>
         </div>
         <div className="row pb-3">
-        {props.items.map((item) => (
-          <ProductList key={item.id} item={item} />
-        ))}
+          {props.items.map((item) => (
+            <ProductList key={item.id} item={item} />
+          ))}
+        </div>
       </div>
-    </div>
     </div>
   );
 };
