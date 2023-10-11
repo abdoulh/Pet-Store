@@ -1,50 +1,50 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const SignUp = ({ login }) => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
+
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
   };
+
   const handleLastnameChange = (e) => {
     setLastName(e.target.value);
   };
 
-  const Signup = async (firstName, lastName, email, password) => {
+  const signup = async (firstName, lastName, email, password) => {
     try {
       const response = await axios.post(
         "http://localhost:3000/api/users/signup",
         {
-          firstName: firstName,
-          password: password,
-          email: email,
-          lastName: lastName,
+          firstName,
+          password,
+          email,
+          lastName,
         }
       );
-      return response.data;
+      return response; // No need to access .data here
     } catch (error) {
       console.log("Registration error:", error);
       throw error;
     }
   };
 
-  const handleSignup = async (e) => {
-    e.preventDefault();
+  const handleSignup = async () => {
     try {
-      const response = await Signup(firstName, lastName, email, password);
-      console.log(response.data);
+      const response = await signup(firstName, lastName, email, password);
+      console.log(response);
       // navigate("/Login");
     } catch (err) {
       console.error(err);
@@ -96,9 +96,12 @@ const SignUp = ({ login }) => {
         </div>
         <div>
           <button
-            className="btn btn-dark btn-block border-0 py-3"
             type="submit"
-            onSubmit={handleSignup}
+            className="btn btn-dark btn-block border-0 py-3"
+            onClick={(e) => {
+              e.preventDefault();
+              handleSignup();
+            }}
           >
             Register
           </button>
@@ -118,4 +121,5 @@ const SignUp = ({ login }) => {
     </div>
   );
 };
+
 export default SignUp;
