@@ -5,6 +5,7 @@ import LandingPage from "./Components/LandingPage.jsx"
 import HomePage from './Components/HomePage.jsx';
 import Cart from "./Components/Cart.jsx"
 import axios from 'axios'
+
 const App = () => {
   const [products, setProducts] = useState([])
   const [users, setUsers] = useState([])

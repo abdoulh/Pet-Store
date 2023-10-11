@@ -20,7 +20,6 @@ module.exports = {
                 lastName: req.body.lastName,
                 email: req.body.email,
                 password: hashpassword,
-                role: req.body.role,
             });
 
             res.status(201).json(user);
@@ -53,21 +52,15 @@ module.exports = {
                 {
                     userId: user.id,
                     role: user.role,
-                    createdAt: user.createdAt,
-                    updatedAt: user.updatedAt,
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                    email: user.email
                 },
                 process.env.jwt_Secret,
                 {
                     expiresIn: "1d",
                 }
             );
-
-            delete user.dataValues.password;
-
-            res.status(200).json({ token, message: 'succed' });
+                delete user.dataValues.password
+                delete user.dataValues.id
+            res.status(200).json({ user ,token, message: 'succed' });
         } catch (error) {
             console.error(error);
             res.status(500).send(error);
