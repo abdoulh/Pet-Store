@@ -1,19 +1,19 @@
-const checkToken = async (token) => {
-  try {
-    var decoded = jwt.verify(token, process.env.jwt_Secret);
-    return decoded;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
+const jwt = require("jsonwebtoken");
+require('dotenv').config();
 
 exports.checkTokenMiddleware = async (req, res, next) => {
   try {
-    const decoded = await checkToken(req.headers["authorization"]);
-    res.json(decoded)
+    const token = req.headers["authorization"].split(" ")[1]
+
+    if (!token) {
+      return res.status(401).json({ message: "Authorization token missing" });
+    }
+    var decoded = await jwt.verify(token, process.env.jwt_Secret);
+      req.userId = decoded.id
+      req.role = decoded.role
     return next();
   } catch (error) {
+    console.error(error);
     return res.status(401).json(error);
   }
 };

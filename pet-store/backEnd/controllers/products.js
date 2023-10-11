@@ -10,6 +10,7 @@ module.exports={
             res.status(500).send(error)
         }
     },
+   
     createProduct: async (req, res) =>  {
         try{
             const {name, category, animal, imageUrl, description, price} = req.body
