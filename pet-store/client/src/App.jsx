@@ -22,7 +22,7 @@ const App =()=>{
    }
    useEffect(()=>{
      fetchProducts()
-   })
+   },[])  
   return (
 
     <Router>
