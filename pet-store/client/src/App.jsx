@@ -1,21 +1,19 @@
 import './App.css'
 import React from "react";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Header from './Components/Login.jsx';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import LandingPage from './Components/LandingPage.jsx';
+import HomePage from './Components/HomePage.jsx';
+import Cart from './Components/Cart.jsx'
 
-import LogIn from './Components/Login.jsx';
-import SignUp from './Components/SignUp.jsx';
-import Products from './components/Products.jsx';
-const App =()=>{
+const App = () => {
   return (
 
     <Router>
       <Routes>
-          <Route path="/" Component={Header}/>
-          <Route path="/Login" Component={LogIn}/>
-          <Route path="/SignUp" Component={SignUp}/>
-          <Route path="/Products" Component={Products}/>
-          </Routes>
+        <Route path="/" Component={LandingPage} />
+        <Route path="/HomePage" Component={HomePage} />
+        <Route path="/Cart" Component={Cart} />
+      </Routes>
     </Router>
   );
 
