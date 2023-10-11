@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar.jsx";
+import axios from "axios";
+import CartList from "./CartList.jsx";
 
 
-
-const Cart = () => {
-
-
+const Cart = ({ cart }) => {
 
 
     return (
@@ -13,21 +12,11 @@ const Cart = () => {
         <div>
             <Navbar />
             <div className="cart-list">
-                <div className="cart-item">
-                    <span>Product Name: Product </span>
-                    <span>Price: $1000</span>
-                    <button className="cart-list-button" >Remove</button>
-                </div>
-                <div className="cart-item">
-                    <span>Product Name: Product </span>
-                    <span>Price: $1000</span>
-                    <button className="cart-list-button" >Remove</button>
-                </div>
-                <div className="cart-item">
-                    <span>Product Name: Product </span>
-                    <span>Price: $1000</span>
-                    <button className="cart-list-button" >Remove</button>
-                </div>
+                {cart.map((item) => {
+
+                    return <CartList key={item.id} item={item} />
+
+                })}
                 <h3>Total: $1000 </h3>
                 <button >checkout</button>
             </div>

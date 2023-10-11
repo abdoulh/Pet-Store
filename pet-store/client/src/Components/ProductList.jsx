@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const ProductList = ({ item }) => {
+const ProductList = ({ item, addToCart, currentUserID }) => {
 
 
 
@@ -16,7 +16,7 @@ const ProductList = ({ item }) => {
                 <p>{item.description.substring(0, 93)}...</p>
                 <p>${item.price}</p>
 
-                <a className="text-uppercase font-weight-bold" href="">Add to cart</a>
+                <a className="text-uppercase font-weight-bold" href="" onClick={(e) => { e.preventDefault(); addToCart(currentUserID, item.id) }}>Add to cart</a>
             </div>
         </div>
 
