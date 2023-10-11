@@ -20,6 +20,7 @@ const Login = ({ signup }) => {
       localStorage.setItem("token", response.data.token);
       navigate("/HomePage");
     } catch (err) {
+      console.log(err)
       alert(err.response.data.error);
     }
   };

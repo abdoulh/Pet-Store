@@ -2,6 +2,7 @@ import React from "react";
 import ProductList from "./ProductList.jsx";
 import Navbar from "./Navbar.jsx";
 
+
 const HomePage = (props) => {
   return (
     <div className="container-fluid bg-light pt-50 pl-0 pr-0">
@@ -13,7 +14,7 @@ const HomePage = (props) => {
         </div>
         <div className="row pb-3">
           {props.items.map((item) => (
-            <ProductList key={item.id} item={item} />
+            <ProductList key={item.id} item={item} addToCart={props.addToCart} currentUserID={props.currentUserID} />
           ))}
         </div>
       </div>

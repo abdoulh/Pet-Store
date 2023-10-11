@@ -58,9 +58,12 @@ module.exports = {
                     expiresIn: "1d",
                 }
             );
-                delete user.dataValues.password
-                delete user.dataValues.id
-            res.status(200).json({ user ,token, message: 'succed' });
+            delete user.dataValues.password
+            delete user.dataValues.id
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace('-', '+').replace('_', '/');
+            const payload = JSON.parse(atob(base64));
+            res.status(200).json({ payload, token, message: 'succeeded' });
         } catch (error) {
             console.error(error);
             res.status(500).send(error);
@@ -85,5 +88,13 @@ module.exports = {
             console.log(error)
             res.status(500).send(error)
         }
+    },
+    getUserId: (req, res) => {
+        const { token } = req.params
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace('-', '+').replace('_', '/');
+        const payload = JSON.parse(atob(base64));
+        res.status(200).json({ payload });
     }
+
 };
