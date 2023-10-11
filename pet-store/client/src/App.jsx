@@ -1,12 +1,15 @@
 import './App.css'
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import LandingPage from "./Components/LandingPage"
+import LandingPage from "./Components/LandingPage.jsx"
 import HomePage from './Components/HomePage.jsx';
-import Cart from "./Components/Cart"
+import Cart from "./Components/Cart.jsx"
 import axios from 'axios'
+
 const App = () => {
   const [products, setProducts] = useState([])
+  const [users, setUsers] = useState([])
+  const [cart, setCart] = useState([])
 
   const fetchProducts = async () => {
     try {
@@ -19,9 +22,22 @@ const App = () => {
     }
 
   }
+
   useEffect(() => {
     fetchProducts()
   }, [])
+
+  const addToCart = async (userID, productID) => {
+
+    try {
+      const { data } = axios.post("http://localhost:3000/api/carts/" + userID + "/" + productID)
+    } catch (error) {
+      console.log(error)
+
+    }
+
+  }
+
   return (
 
     <Router>
