@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Login from './Login.jsx';
 import SignUp from './SignUp.jsx';
+import '../App.css'
 
-const Header = () => {
+const LandingPage = ({ setCurrentUser }) => {
 
   const [logView, setLogView] = useState('login')
 
@@ -59,7 +60,7 @@ const Header = () => {
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-5">
-                {logView === "login" && <Login signup={setLogView} />}
+                {logView === "login" && <Login signup={setLogView} setCurrentUser={setCurrentUser} />}
                 {logView === "singnUp" && <SignUp login={setLogView} />}
               </div>
             </div>
@@ -73,4 +74,4 @@ const Header = () => {
   )
 }
 
-export default Header;
+export default LandingPage;

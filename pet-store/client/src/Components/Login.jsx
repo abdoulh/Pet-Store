@@ -6,7 +6,7 @@ const Login = ({ signup }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  
+
   const login = async (email, password) => {
     try {
       const response = await axios.post(
@@ -18,8 +18,9 @@ const Login = ({ signup }) => {
       );
       console.log("login succed", response);
       localStorage.setItem("token", response.data.token);
-      navigate("/Products");
+      navigate("/HomePage");
     } catch (err) {
+      console.log(err)
       alert(err.response.data.error);
     }
   };
