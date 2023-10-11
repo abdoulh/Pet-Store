@@ -1,10 +1,9 @@
 import './App.css'
 import React,{useState,useEffect} from "react";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Header from './Components/Login.jsx';
-
-import LogIn from './Components/Login.jsx';
-import SignUp from './Components/SignUp.jsx';
+import LandingPage from "./Components/LandingPage"
+import HomePage from './Components/HomePage.jsx';
+import Cart from "./Components/Cart"
 import ProductList from './Components/HomePage.jsx';
 import axios from 'axios'
 const App =()=>{
@@ -28,9 +27,9 @@ const App =()=>{
 
     <Router>
       <Routes>
-          <Route path="/" Component={Header}/>
-          <Route path="/Login" Component={LogIn}/>
-          <Route path="/SignUp" Component={SignUp}/>
+          <Route path="/" Component={LandingPage}/>
+          <Route path="/HomePage" Component={HomePage}/>
+          <Route path="/Cart" Component={Cart}/>
           <Route path="/Products" element={<ProductList items={products}/>} />
           </Routes>
     </Router>

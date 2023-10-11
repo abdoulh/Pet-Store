@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 const Navbar = () => {
   const [catsDropdownOpen, setCatsDropdownOpen] = useState(false);
@@ -7,17 +7,17 @@ const Navbar = () => {
     setCatsDropdownOpen(!catsDropdownOpen);
     setDogsDropdownOpen(false);
   };
-    const [dogsDropdownOpen, setDogsDropdownOpen] = useState(false);
+  const [dogsDropdownOpen, setDogsDropdownOpen] = useState(false);
 
   const toggleDogsDropdown = () => {
-    setDogsDropdownOpen(!catsDropdownOpen);
+    setDogsDropdownOpen(!dogsDropdownOpen);
     setCatsDropdownOpen(false)
   };
 
 
   return (
     <div className="container-fluid p-0">
-      <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
+      <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5 ">
         <a href="" className="navbar-brand d-block d-lg-none">
           <h1 className="m-0 display-5 text-capitalize font-italic text-white">
             <span className="text-primary">Safety</span>First
@@ -44,41 +44,39 @@ const Navbar = () => {
               Products
             </a>
             <div className="nav-item dropdown">
-            <a
-              href="#"
-              className="nav-link dropdown-toggle"
-              data-toggle="dropdown"
-              onClick={toggleCatsDropdown}
-            >
-              Cats
-            </a>
-            <div className={`dropdown-menu rounded-0 m-0 ${
-                catsDropdownOpen ? "show" : ""
-            }`}>
-              <a href="blog.html" className="dropdown-item">
-                toys
+              <a
+                href="#"
+                className="nav-link dropdown-toggle"
+                data-toggle="dropdown"
+                onClick={toggleCatsDropdown}
+              >
+                Cats
               </a>
-              <a href="single.html" className="dropdown-item">
-                food
-              </a>
-              <a href="single.html" className="dropdown-item">
-                upholstery
-              </a>
-            </div>
+              <div className={`dropdown-menu rounded-0 m-0 ${catsDropdownOpen ? "show" : ""
+                }`}>
+                <a href="blog.html" className="dropdown-item">
+                  toys
+                </a>
+                <a href="single.html" className="dropdown-item">
+                  food
+                </a>
+                <a href="single.html" className="dropdown-item">
+                  upholstery
+                </a>
+              </div>
             </div>
             <div className="nav-item dropdown">
-            <a
-              href="#"
-              className="nav-link dropdown-toggle"
-              data-toggle="dropdown"
-              onClick={toggleDogsDropdown}
-            >
-              Dogs
-            </a>
+              <a
+                href="#"
+                className="nav-link dropdown-toggle"
+                data-toggle="dropdown"
+                onClick={toggleDogsDropdown}
+              >
+                Dogs
+              </a>
 
-              <div className={`dropdown-menu rounded-0 m-0 ${
-                  dogsDropdownOpen ? "show" : ""
-              }`}>
+              <div className={`dropdown-menu rounded-0 m-0 ${dogsDropdownOpen ? "show" : ""
+                }`}>
                 <a href="blog.html" className="dropdown-item">
                   toys
                 </a>
@@ -98,10 +96,10 @@ const Navbar = () => {
 
 
           <a
-            href="Login"
+            href="Cart"
             className="btn btn-lg btn-primary px-3 d-none d-lg-block"
           >
-           My Cart
+            My Cart
           </a>
 
 
