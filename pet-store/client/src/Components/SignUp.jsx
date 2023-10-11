@@ -22,6 +22,9 @@ const SignUp =()=>{
                             </div>
                             <div>
                                 <button className="btn btn-dark btn-block border-0 py-3" type="submit">Register</button>
+                                <div>
+                             <a href="/Login" className="link">Already have an account? Log In</a>
+                             </div>
                             </div>
                         </form>
                     </div>

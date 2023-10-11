@@ -1,7 +1,7 @@
 import './App.css'
 import React from "react";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Header from './components/Header.jsx';
+import Header from './Components/Login.jsx';
 
 import LogIn from './Components/Login.jsx';
 import SignUp from './Components/SignUp.jsx';
