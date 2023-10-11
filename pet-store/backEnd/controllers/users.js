@@ -58,8 +58,9 @@ module.exports = {
                     expiresIn: "1d",
                 }
             );
-
-            res.status(200).json({ token, message: 'succed' });
+                delete user.dataValues.password
+                delete user.dataValues.id
+            res.status(200).json({ user ,token, message: 'succed' });
         } catch (error) {
             console.error(error);
             res.status(500).send(error);
