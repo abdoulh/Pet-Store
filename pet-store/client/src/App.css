@@ -258,7 +258,7 @@ button,
 [type="button"],
 [type="reset"],
 [type="submit"] {
-  -webkit-appearance: button;
+-webkit-appearance: button;
 }
 
 button:not(:disabled),
@@ -4077,27 +4077,11 @@ input[type="button"].btn-block {
   text-align: center;
 }
 
-<<<<<<< HEAD
 .nav-justified > .nav-link,
 .nav-justified .nav-item {
   flex-basis: 0;
   flex-grow: 1;
   text-align: center;
-=======
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
->>>>>>> 56ce697ba60fafabe36bb73c467ec7c1eeeaca4a
 }
 
 .tab-content > .tab-pane {
@@ -4198,7 +4182,6 @@ input[type="button"].btn-block {
     padding-right: 0;
     padding-left: 0;
   }
-<<<<<<< HEAD
 }
 
 @media (min-width: 576px) {
@@ -6293,9 +6276,6 @@ a.close.disabled {
 }
 
 @keyframes spinner-border {
-=======
-
->>>>>>> 56ce697ba60fafabe36bb73c467ec7c1eeeaca4a
   to {
     transform: rotate(360deg);
   }
@@ -6339,7 +6319,6 @@ a.close.disabled {
   animation: spinner-grow .75s linear infinite;
 }
 
-<<<<<<< HEAD
 .spinner-grow-sm {
   width: 1rem;
   height: 1rem;
@@ -9871,8 +9850,3 @@ h6 {
 .show > .btn-primary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(240, 123, 84, 0.5);
 }
-=======
-.read-the-docs {
-  color: #888;
-}
->>>>>>> 56ce697ba60fafabe36bb73c467ec7c1eeeaca4a

@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize')
-const dotenv=require('dotenv').config()
+require('dotenv').config()
 
 
 
@@ -36,7 +36,7 @@ const connect = async () => {
 }
 
 
-//db.sequelize.sync({ force: true })
+// db.sequelize.sync({ force: true })
 
 connect()
 

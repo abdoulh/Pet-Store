@@ -4,7 +4,6 @@ const usersRouter = require('./routes/users')
 const productsRouter = require('./routes/products')
 
 
-
 const app = express()
 const port = 3000
 
