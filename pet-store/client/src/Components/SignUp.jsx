@@ -1,0 +1,125 @@
+import React, { useState } from "react";
+import axios from "axios";
+
+const SignUp = ({ login }) => {
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const handleLastnameChange = (e) => {
+    setLastName(e.target.value);
+  };
+
+  const signup = async (firstName, lastName, email, password) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/users/signup",
+        {
+          firstName,
+          password,
+          email,
+          lastName,
+        }
+      );
+      return response; // No need to access .data here
+    } catch (error) {
+      console.log("Registration error:", error);
+      throw error;
+    }
+  };
+
+  const handleSignup = async () => {
+    try {
+      const response = await signup(firstName, lastName, email, password);
+      console.log(response);
+      // navigate("/Login");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  return (
+    <div className="bg-primary py-5 px-4 px-sm-5">
+      <form className="py-5">
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control border-0 p-4"
+            placeholder="Your First Name"
+            required="required"
+            value={firstName}
+            onChange={handleFirstNameChange}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            className="form-control border-0 p-4"
+            placeholder="Your Last Name"
+            required="required"
+            value={lastName}
+            onChange={handleLastnameChange}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="email"
+            className="form-control border-0 p-4"
+            placeholder="Your Email"
+            required="required"
+            value={email}
+            onChange={handleEmailChange}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="password"
+            className="form-control border-0 p-4"
+            placeholder="Your Password"
+            required="required"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+        </div>
+        <div>
+          <button
+            type="submit"
+            className="btn btn-dark btn-block border-0 py-3"
+            onClick={(e) => {
+              e.preventDefault();
+              handleSignup();
+            }}
+          >
+            Register
+          </button>
+          <div>
+            <a
+              className="link"
+              onClick={(e) => {
+                e.preventDefault();
+                login("login");
+              }}
+            >
+              Already have an account? Log In
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default SignUp;

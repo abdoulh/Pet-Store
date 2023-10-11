@@ -27,8 +27,9 @@ module.exports = {
                 return;
             }
 
-            await user.addProduct(product);
+            const cartItem = await user.addProduct(product);
             console.log('User added to the product successfully');
+            res.status(201).json(cartItem)
         } catch (error) {
             console.error('Error:', error.message);
         }

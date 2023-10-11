@@ -5,7 +5,7 @@ const router = express.Router();
 const { getCartItems, addToCart, removeFromCart } = require('../controllers/cart');
 
 
-router.route('/carts')
+router.route('/carts/:id')
     .get(getCartItems)
 
 router.route('/carts/:userID/:productID')
