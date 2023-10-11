@@ -5,7 +5,7 @@ require('dotenv').config()
 
 module.exports = {
     // Register controller
-    createProfil: async (req, res) => {
+    createProfile: async (req, res) => {
         try {
             const checkemail = await User.findOne({ where: { email: req.body.email } });
 
