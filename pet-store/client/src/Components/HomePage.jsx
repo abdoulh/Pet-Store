@@ -13,7 +13,7 @@ const HomePage = (props) => {
         </div>
         <div className="row pb-3">
         {props.items.map((item) => (
-          <ProductList key={item.id} item={item} />
+          <ProductList key={item.id} item={item}  />
         ))}
       </div>
     </div>
