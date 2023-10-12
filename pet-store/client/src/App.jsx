@@ -70,7 +70,6 @@ const App = () => {
   }
 
   return (
-
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage setCurrentUser={setCurrentUserID} />} />
@@ -86,5 +85,6 @@ const App = () => {
 
 
 }
+
 
 export default App;
