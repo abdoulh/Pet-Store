@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
+import React, { useState, useEffect, createContext } from "react";
+import './App.css'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./Components/LandingPage.jsx";
 import HomePage from "./Components/HomePage.jsx";
@@ -11,31 +11,28 @@ import axios from "axios";
 import ProtectedRouteAdmin from "./providers/admin.provider.jsx";
 import ProtectedRouteUser from "./providers/user.provider.jsx";
 
+export const UserContext = createContext();
+
+
+
 const App = () => {
-  const [products, setProducts] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [currentUserID, setCurrentUserID] = useState();
+
+
+
+  const [products, setProducts] = useState([])
+  const [users, setUsers] = useState([])
+  const [currentUserID, setCurrentUserID] = useState()
   const [currentUserRole, setCurrentUserRole] = useState(localStorage.getItem("role"));
-  const [cart, setCart] = useState([]);
-  console.log(currentUserRole);
-  const fetchAllCartItems = async () => {
-    try {
-      const { data } = await axios.get(
-        "http://localhost:3000/api/carts/" + currentUserID
-      );
-      setCart(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
+
+
 
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get("http://localhost:3000/api/product");
-      setProducts(data);
-      getUserId();
-      fetchAllCartItems();
-      console.log(data);
+      const { data } = await axios.get("http://localhost:3000/api/product")
+      setProducts(data)
+      getUserId()
+      console.log(data)
     } catch (error) {
       console.log(error);
     }
@@ -71,7 +68,7 @@ const App = () => {
 
   return (
 
-
+<UserContext.Provider value={currentUserID}>
     <Router>
       <Routes>
         <Route
@@ -84,6 +81,12 @@ const App = () => {
           <HomePage items={products}   addToCart={addToCart}  currentUserID={currentUserID}  />
                    
         </Route>
+
+        <Route path="/Cart" element={<ProtectedRouteUser redirectPath="/HomePage"  isAllowed={ token && currentUserRole.includes("customer")} />}>
+         
+        <Cart getUserId={getUserId} />
+                  
+       </Route>
 
         
         <Route path ="AdminProductList" element={<ProtectedRouteAdmin redirectPath="/HomePage"  isAllowed={ token && currentUserRole.includes("admin")} >
@@ -106,6 +109,7 @@ const App = () => {
 
       </Routes>
     </Router>
+    </UserContext.Provider>
   );
 };
 
