@@ -16,9 +16,6 @@ export const UserContext = createContext();
 
 
 const App = () => {
-
-
-
   const [products, setProducts] = useState([])
   const [users, setUsers] = useState([])
   const [currentUserID, setCurrentUserID] = useState()
@@ -76,32 +73,34 @@ const App = () => {
           element={<LandingPage setCurrentUser={setCurrentUserID} />}
         />
 
-        <Route path="/HomePage" element={<ProtectedRouteUser redirectPath="/HomePage"  isAllowed={ token && currentUserRole.includes("customer")} />}>
+        <Route path="/HomePage" element={<ProtectedRouteUser redirectPath="/"  isAllowed={ token && currentUserRole.includes("customer")} >
          
-          <HomePage items={products}   addToCart={addToCart}  currentUserID={currentUserID}  />
-                   
+          <HomePage items={products}   addToCart={addToCart}  currentUserID={currentUserID} />
+    </ProtectedRouteUser>
+  }>
         </Route>
 
-        <Route path="/Cart" element={<ProtectedRouteUser redirectPath="/HomePage"  isAllowed={ token && currentUserRole.includes("customer")} />}>
-         
+        <Route path="/Cart" element={<ProtectedRouteUser redirectPath="/"  isAllowed={ token && currentUserRole.includes("customer")} >
         <Cart getUserId={getUserId} />
-                  
+        </ProtectedRouteUser>
+      }>
+
        </Route>
 
         
-        <Route path ="AdminProductList" element={<ProtectedRouteAdmin redirectPath="/HomePage"  isAllowed={ token && currentUserRole.includes("admin")} >
+        <Route path ="AdminProductList" element={<ProtectedRouteAdmin redirectPath="/"  isAllowed={ token && currentUserRole.includes("admin")} >
           
         <AdminProductList />
             </ProtectedRouteAdmin>
           }>
       
         </Route>
-        <Route path="AdminUsersList" element={<ProtectedRouteAdmin redirectPath="/HomePage"  isAllowed={ token && currentUserRole.includes("admin")} >
+        <Route path="AdminUsersList" element={<ProtectedRouteAdmin redirectPath="/"  isAllowed={ token && currentUserRole.includes("admin")} >
           <AdminUsersList />
             </ProtectedRouteAdmin>
           }>
     </Route>
-    <Route path="AdminAddProduct" element={<ProtectedRouteAdmin redirectPath="/HomePage"  isAllowed={ token && currentUserRole.includes("admin")} >
+    <Route path="AdminAddProduct" element={<ProtectedRouteAdmin redirectPath="/"  isAllowed={ token && currentUserRole.includes("admin")} >
           <AdminAddProduct />
             </ProtectedRouteAdmin>
           }>
