@@ -58,7 +58,7 @@ const Cart = () => {
                     return <CartList key={item.id} item={item} fetchAllCartItems={fetchAllCartItems} />
 
                 })}
-                <h3 >Total: ${price}</h3>
+                <h3 >Total: ${price.toFixed(2)}</h3>
                 <button className=" btn-lg btn-dark px-3 d-none d-lg-block" onClick={toggleModal} >checkout</button>
             </div>
             {
