@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import './App.css'
 
 
-
-const UsersList = () => {
+const AdminUsersList = () => {
 
     const [users, setUsers] = useState([])
 
@@ -21,10 +19,16 @@ const UsersList = () => {
         fetchUsers();
     }, []);
 
+    return (
+        <div>
+
+        </div>
+    )
+
 
 }
 
 
-export default UsersList;
+export default AdminUsersList;
 
 

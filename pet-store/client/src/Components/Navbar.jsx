@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 const Navbar = () => {
   const [catsDropdownOpen, setCatsDropdownOpen] = useState(false);
 
@@ -19,9 +20,6 @@ const Navbar = () => {
     <div className="container-fluid p-0">
       <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5 ">
         <a href="" className="navbar-brand d-block d-lg-none">
-          <h1 className="m-0 display-5 text-capitalize font-italic text-white">
-            <span className="text-primary">Safety</span>First
-          </h1>
         </a>
         <button
           type="button"
@@ -36,7 +34,7 @@ const Navbar = () => {
           id="navbarCollapse"
         >
           <div className="navbar-nav mr-auto py-0">
-            <a href="index.html" className="nav-item nav-link active">
+            <a href="HomePage" className="nav-item nav-link active">
               Home
             </a>
 

@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 const Login = ({ signup }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  
+ 
+const navigate =  useNavigate()
   const login = async (email, password) => {
     try {
       const response = await axios.post(
@@ -16,10 +16,20 @@ const Login = ({ signup }) => {
           password: password,
         }
       );
-      console.log("login succed", response);
+      console.log("login succed", response.data);
       localStorage.setItem("token", response.data.token);
-      navigate("/Products");
+      localStorage.setItem("role", response.data.payload.role);
+      if(response.data.payload.role === "customer"){
+        navigate("/HomePage")
+
+
+      }else if(response.data.payload.role === "admin"){
+         navigate("/AdminProductList")
+      }
+
+
     } catch (err) {
+      console.log(err)
       alert(err.response.data.error);
     }
   };
