@@ -16,10 +16,13 @@ export const UserContext = createContext();
 const App = () => {
 
 
-
   const [products, setProducts] = useState([])
   const [users, setUsers] = useState([])
   const [currentUserID, setCurrentUserID] = useState()
+  
+const[selectedByUser,setSelectedByUser]=useState(null)
+const [filterData,setFilterData]=useState([])
+  
 
 
 
@@ -30,6 +33,7 @@ const App = () => {
       const { data } = await axios.get("http://localhost:3000/api/product")
       setProducts(data)
       getUserId()
+      setFilterData(data)
       console.log(data)
     }
     catch (error) {
@@ -66,6 +70,17 @@ const App = () => {
     }
 
   }
+  const handleSelct=(val)=>setSelectedByUser(val)
+  useEffect(()=>{
+    if(selectedByUser){
+    const filteredList=products.filter(elem=>elem.animal===selectedByUser.animal&&elem.category===selectedByUser.category)
+    setFilterData(filteredList)
+    }
+
+  },[selectedByUser])
+
+
+
 
   return (
     <UserContext.Provider value={currentUserID}>
@@ -73,7 +88,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<LandingPage setCurrentUser={setCurrentUserID} />} />
           <Route path="/Cart" element={<Cart getUserId={getUserId} />} />
-          <Route path="/HomePage" element={<HomePage items={products} addToCart={addToCart} currentUserID={currentUserID} />} />
+          <Route path="/HomePage" element={<HomePage items={filterData} addToCart={addToCart} currentUserID={currentUserID} handleSelct={handleSelct} />} />
           <Route path="/AdminProductList" element={<AdminProductList />} />
           <Route path="/AdminUsersList" element={<AdminUsersList />} />
           <Route path="/AdminAddProduct" element={<AdminAddProduct />} />
