@@ -25,8 +25,10 @@ const CartList = ({ item, fetchAllCartItems }) => {
     return (
 
         <div className="cart-item">
-            <span>Product Name: {item.name} </span>
-            <span>Price: ${item.price}</span>
+
+            <span className="cartName">Product Name: {item.name}</span>
+            <span className="cartPrice" >Price: ${item.price}</span>
+
             <button className="cart-list-button" onClick={() => { removeFromCart(user, item.id) }}>Remove</button>
         </div>
     )
