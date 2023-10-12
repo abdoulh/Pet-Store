@@ -5,7 +5,7 @@ require('dotenv').config()
 
 module.exports = {
     // Register controller
-    createProfil: async (req, res) => {
+    createProfile: async (req, res) => {
         try {
             const checkemail = await User.findOne({ where: { email: req.body.email } });
 
@@ -20,7 +20,6 @@ module.exports = {
                 lastName: req.body.lastName,
                 email: req.body.email,
                 password: hashpassword,
-                role: req.body.role,
             });
 
             res.status(201).json(user);
@@ -53,21 +52,18 @@ module.exports = {
                 {
                     userId: user.id,
                     role: user.role,
-                    createdAt: user.createdAt,
-                    updatedAt: user.updatedAt,
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                    email: user.email
                 },
                 process.env.jwt_Secret,
                 {
                     expiresIn: "1d",
                 }
             );
-
-            delete user.dataValues.password;
-
-            res.status(200).json({ token, message: 'succed' });
+            delete user.dataValues.password
+            delete user.dataValues.id
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace('-', '+').replace('_', '/');
+            const payload = JSON.parse(atob(base64));
+            res.status(200).json({ payload, token, message: 'succeeded' });
         } catch (error) {
             console.error(error);
             res.status(500).send(error);
@@ -92,5 +88,13 @@ module.exports = {
             console.log(error)
             res.status(500).send(error)
         }
+    },
+    getUserId: (req, res) => {
+        const { token } = req.params
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace('-', '+').replace('_', '/');
+        const payload = JSON.parse(atob(base64));
+        res.status(200).json({ payload });
     }
+
 };

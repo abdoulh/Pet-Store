@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'Prata': ['Prata', 'sans-serif'],
-       
+
       },
     },
   },

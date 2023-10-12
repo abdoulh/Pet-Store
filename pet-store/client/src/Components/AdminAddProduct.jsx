@@ -5,24 +5,42 @@ import '../index.css';
 const AdminAddProduct = ({ onAddProduct }) => {
   const [product, setProduct] = useState({
     name: "",
-    category: "Food",
+    category: "",
+    animal: "",
+    imageUrl: "",
     description: "",
     price: "",
-    animal: "dog"
   });
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onAddProduct(product);
-  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("category", category);
+      formData.append("animal", animal)
+      formData.append("imageUrl", imageUrl)
+      formData.append("description", description)
+      formData.append("price", price)
+      const response = await axios.post(
+        "http://localhost:3000/api/product",
+        formData)
+    } catch (error) {
+      console.error(
+        "Error adding post:",
+        error.response ? error.response.data : error.message
+      );
+    }
+  }
+
+
 
   return (
-    <div id="createProductModal" className="hidden">
+    <div id="createProductModal" className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
       <div className="modal-box">
         <h2>Add Product</h2>
         <form onSubmit={handleSubmit}>
@@ -89,3 +107,4 @@ const AdminAddProduct = ({ onAddProduct }) => {
     </div>
   );
 };
+export default AdminAddProduct;

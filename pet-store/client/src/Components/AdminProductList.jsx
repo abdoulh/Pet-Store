@@ -1,42 +1,57 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../index.css';
+import AdminAddProduct from "./AdminAddProduct";
 
 const AdminProductList = () => {
     const [products, setProducts] = useState([]);
-    const [showAddProductModal, setShowAddProductModal] = useState(false);
+    const [modal, setModal] = useState(false);
+    
+
+
+
+    const toggleModal = () => {
+        setModal(!modal);
+    };
+
+    if (modal) {
+       document.body.classList.add('active-modal')
+    } else {
+        document.body.classList.remove('active-modal')
+    }
+
+
+    const fetchProducts = async () => {
+        try {
+            const response = await axios.get('http://localhost:3000/api/product');
+            console.log(response.data);
+            setProducts(response.data);
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    };
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await axios.get('http://localhost:3000/api/product');
-                console.log(response.data);
-                setProducts(response.data);
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            }
-        };
-
         fetchProducts();
     }, []);
     const handleAddProduct = (newProduct) => {
         setProducts([...products, newProduct]);
-        setShowAddProductModal(false);
+
     };
 
 
     return (
-        <section className="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased">
+        <section className="serch-bar bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased">
             <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
             </div>
-            <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-                <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-                    <div className="w-full md:w-1/2">
-                        <form className="flex items-center">
+            <div className=" search-bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+                <div className="search-b flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+                    <div className="search-v w-full md:w-1/2">
+                        <form className="search-f flex items-center">
                             <label htmlFor="simple-search" className="sr-only">
                                 Search
                             </label>
-                            <div className="relative w-full">
+                            <div className=" relative w-full">
                                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                     <svg
                                         aria-hidden="true"
@@ -65,34 +80,10 @@ const AdminProductList = () => {
                 </div>
             </div>
 
-            <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                <button
-                    type="button"
-                    id="createProductModalButton"
-                    data-modal-target="createProductModal"
-                    data-modal-toggle="createProductModal"
-                    className="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
-                >
-                    <svg className="h-3.5 w-3.5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <button
-                            type="button"
-                            onClick={() => setShowAddProductModal(true)}
-                            className="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
-                        >
-                            <svg className="h-3.5 w-3.5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                {/* Add SVG path for the 'Add product' icon */}
-                            </svg>
-                            Add product
-                        </button>
-                    </svg>
-                    Add product
-                </button>
-                {/* Additional actions or buttons */}
-            </div>
+            <button onClick={toggleModal} className="btn-modal">
+                Add Product + 
+            </button>
 
-            <div className="relative inline-block text-left">
-                {/* Dropdown for actions */}
-            </div>
 
             <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -116,15 +107,26 @@ const AdminProductList = () => {
                         </tr>
                     </thead>
                     <tbody>
+                    {modal && (
+        <div className="modal">
+          <div onClick={toggleModal} className="overlay"></div>
+          <div className="modal-content">
+            <AdminAddProduct/>
+            <button className="close-modal" onClick={toggleModal}>
+              CLOSE
+            </button>
+          </div>
+        </div>
+            )}
                         {products.map((product, index) => (
                             <tr key={index} className="border-b dark:border-gray-700">
                                 <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {product.name}
                                 </td>
-                                <td className="px-4 py-3">{product.category}</td>
-                                <td className="px-4 py-3">{product.animal}</td>
-                                <td className="px-4 py-3 max-w-[12rem] truncate">{product.description}</td>
-                                <td className="px-4 py-3">{product.price}$</td>
+                                <td className="TB px-4 py-3">{product.category}</td>
+                                <td className="TBpx-4 py-3">{product.animal}</td>
+                                <td className="TB px-4 py-3 max-w-[12rem] truncate">{product.description}</td>
+                                <td className="TB px-4 py-3">{product.price}$</td>
 
                                 <td className="px-4 py-3 flex items-center justify-end">
                                     <button id="apple-imac-27-dropdown-button" data-dropdown-toggle="apple-imac-27-dropdown" className="inline-flex items-center text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 p-1.5 dark:hover-bg-gray-800 text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100" type="button">
@@ -156,10 +158,10 @@ const AdminProductList = () => {
                                 </td>
                             </tr>
                         ))}
+                            
                     </tbody>
                 </table>
             </div>
-            {showAddProductModal && <AdminAddProduct onAddProduct={handleAddProduct} />}
 
         </section>
     );
