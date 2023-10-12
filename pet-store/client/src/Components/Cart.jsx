@@ -4,7 +4,7 @@ import axios from "axios";
 import CartList from "./CartList.jsx";
 import { UserContext } from '../App.jsx'
 
-const Cart = ({ getUserId }) => {
+const Cart = () => {
 
     const user = useContext(UserContext)
 
@@ -40,7 +40,7 @@ const Cart = ({ getUserId }) => {
             <div className="cart-list">
                 {cart.map((item) => {
 
-                    return <CartList key={item.id} item={item} />
+                    return <CartList key={item.id} item={item} fetchAllCartItems={fetchAllCartItems} />
 
                 })}
                 <h3>Total: ${price}</h3>
