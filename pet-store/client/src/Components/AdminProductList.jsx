@@ -15,9 +15,9 @@ const AdminProductList = () => {
         setAddProductModal(!addProductModal);
     };
 
-    const toggleEditProductModal = (product) => {
+    const toggleEditProductModal = (productId) => {
         setEditProductModal(!editProductModal);
-        setSelectedProduct(product);
+        setSelectedProduct(productId);
     };
 
     useEffect(() => {

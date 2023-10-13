@@ -30,7 +30,7 @@ const AdminEditProduct = () => {
       formData.append("price", editedProduct.price);
 
       // Replace 'productId' with the actual product ID you want to edit
-      const productId = 'your_product_id_here';
+      const productId = 'editedProduct';
 
       await axios.put(
         `http://localhost:3000/api/product/${productId}`,
@@ -52,6 +52,7 @@ const AdminEditProduct = () => {
     event.preventDefault();
     await EditProduct();
   };
+  
 
   return (
     <div id="editProductModal" className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
