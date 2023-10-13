@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import AdminNavbar from './AdminNavbar'
 import axios from "axios";
+import AdminNav from "./AdminNav";
 import '../styles/adminLists.css'
-
 
 
 
@@ -35,7 +34,7 @@ const AdminUsersList = () => {
 
     return (
         <div className="admin-dashboard">
-            <AdminNavbar />
+            <AdminNav />
            
             <div className="admin-content">
                 <table className="admin-product-table">

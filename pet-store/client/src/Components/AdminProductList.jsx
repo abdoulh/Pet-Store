@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../styles/adminLists.css';
-import AdminNavbar from "./AdminNavbar";
+import AdminNav from "./AdminNav";
 
 const AdminProductList = () => {
     const [products, setProducts] = useState([]);
@@ -73,7 +73,7 @@ const AdminProductList = () => {
 
     return (
         <div className="admin-dashboard">
-            <AdminNavbar />
+            <AdminNav />
 
             <div className="admin-content">
                 <table className="admin-product-table">
@@ -98,8 +98,8 @@ const AdminProductList = () => {
                                 <td>
                                     {
                                         modal && (
-                                            <div className="admin-modal">
-                                                <div onClick={toggleModal} className="overlay"></div>
+                                            <div className="modal-custom">
+                                                <div  className="overlay"></div>
                                                 <div className="modal-content-custom-cart">
                                                     <Checkout />
                                                     <button className="close-modal-custom btn btn-lg btn-dark px- d-none d-lg-block" onClick={toggleModal}>
@@ -109,7 +109,7 @@ const AdminProductList = () => {
                                             </div>
                                         )
                                     }
-                                    <button className="admin-product-edit-button" onClick={() => handleEditProduct(product)}>Edit</button>
+                                    <button className="admin-product-edit-button" onClick={toggleModal}>Edit</button>
                                     <button className="admin-product-delete-button" onClick={() => removeFromCart(product.id)}>Delete</button>
                                 </td>
                             </tr>
