@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const Navbar = ({handleSelect}) => {
+const Navbar = ({handleSelect,onSearch}) => {
   const [catsDropdownOpen, setCatsDropdownOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  
  
 
   const toggleCatsDropdown = () => {
@@ -22,6 +24,11 @@ const Navbar = ({handleSelect}) => {
 
 
   const navigate = useNavigate()
+  const _handleSearch=()=>
+  {
+    onSearch(searchTerm)
+
+  }
 
 
 
@@ -95,6 +102,20 @@ const Navbar = ({handleSelect}) => {
             </div>
 
           </div>
+          <div className="navbar-nav mr-auto py-0">
+             
+                  <div className="navbar-nav mr-auto py-0">
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                      
+                    />
+
+                    <button className="btn btn-lg btn-primary px-3 mx-3 d-lg-block" onClick={_handleSearch}>Search</button>
+                  </div>
+            </div>
 
 
           <button
