@@ -9,6 +9,7 @@ const Cart = () => {
 
     const user = useContext(UserContext)
 
+
     const [cart, setCart] = useState([])
     const [modal, setModal] = useState(false);
 
@@ -66,7 +67,7 @@ const Cart = () => {
                     <div className="modal-custom">
                         <div onClick={toggleModal} className="overlay"></div>
                         <div className="modal-content-custom-cart">
-                            <Checkout />
+                            <Checkout toggleModal={toggleModal} />
                             <button className="close-modal-custom btn btn-lg btn-dark px- d-none d-lg-block" onClick={toggleModal}>
                                 CLOSE
                             </button>

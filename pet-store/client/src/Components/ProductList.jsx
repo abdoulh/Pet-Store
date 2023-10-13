@@ -23,7 +23,7 @@ const ProductList = ({ item, addToCart, currentUser }) => {
       <div className="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
         <h3 className="flaticon-house display-3 font-weight-normal text-secondary mb-3">
           <img src={item.imageUrl} alt="" className='productImage' onClick={toggleModal} /></h3>
-        <h3 className="mb-3">{item.name}</h3>
+        <h3 className="mb-3" onClick={toggleModal}>{item.name}</h3>
         <p>{item.description.substring(0, 93)}...</p>
         <p>${item.price}</p>
 
@@ -34,7 +34,7 @@ const ProductList = ({ item, addToCart, currentUser }) => {
           <div className="modal-custom">
             <div onClick={toggleModal} className="overlay"></div>
             <div className="modal-content-custom">
-              <ProductDetails selectedProduct={item} />
+              <ProductDetails selectedProduct={item} addToCart={addToCart} currentUser={currentUser} />
               <button className="close-modal-custom btn btn-lg btn-primary px-3 d-none d-lg-block" onClick={toggleModal}>
                 CLOSE
               </button>

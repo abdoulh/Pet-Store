@@ -11151,11 +11151,13 @@
 
   .cartPrice {
 
-    max-width: 400px;
+    max-width: 300px;
+    margin-right: 200px;
+
   }
 
   .cartName {
-    max-width: 380px;
+    max-width: 280px;
   }
 
   .modal-content-custom-cart {
@@ -11247,4 +11249,9 @@
     padding-left: 10px;
     padding-bottom: 12px;
     padding-top: 20px;
+  }
+
+  .method {
+    color: white;
+    font-weight: bold;
   }
