@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 const Login = ({ signup }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
- 
-const navigate =  useNavigate()
+
+  const navigate = useNavigate()
   const login = async (email, password) => {
     try {
       const response = await axios.post(
@@ -19,12 +19,14 @@ const navigate =  useNavigate()
       console.log("login succed", response.data);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("role", response.data.payload.role);
-      if(response.data.payload.role === "customer"){
+      if (response.data.payload.role === "customer") {
         navigate("/HomePage")
 
+        return
 
-      }else if(response.data.payload.role === "admin"){
-         navigate("/AdminProductList")
+
+      } else if (response.data.payload.role === "admin") {
+        navigate("/AdminProductList")
       }
 
 
@@ -40,49 +42,52 @@ const navigate =  useNavigate()
   };
 
   return (
-    <div className="bg-primary py-5 px-4 px-sm-5">
-      <form className="py-5">
-        <div className="form-group">
-          <input
-            type="email"
-            className="form-control border-0 p-4"
-            placeholder="Your Email"
-            required="required"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            className="form-control border-0 p-4"
-            placeholder="Your Password"
-            required="required"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <button
-            className="btn btn-dark btn-block border-0 py-3"
-            onClick={(e) => handleLogin(e)}
-          >
-            Log In
-          </button>
-        </div>
-        <div>
-          <a
-            className="link"
-            onClick={(e) => {
-              e.preventDefault();
-              signup("singnUp");
-            }}
-          >
-            You don't have an account? Sign UP
-          </a>
-        </div>
-      </form>
+
+
+    <div className="backGround">
+      <h1 className='logo1' >Happy </h1> <h1 className="logo2">Pets</h1>
+      <div className="loginBox">
+        <form className="py-5">
+          <div className="form-group">
+            <input
+              type="email"
+              className="form-control border-0 p-4"
+              placeholder="Your Email"
+              required="required"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              className="form-control border-0 p-4"
+              placeholder="Your Password"
+              required="required"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div>
+            <button
+              className="btn btn-dark btn-block border-0 py-3"
+              onClick={(e) => { handleLogin(e) }}
+            >
+              Log In
+            </button>
+          </div>
+          <div>
+            <a
+              className="link" onClick={() => { navigate('/SignUp') }}
+            >
+              You don't have an account? Sign UP
+            </a>
+          </div>
+        </form>
+      </div>
     </div>
+
+
   );
 };
 
