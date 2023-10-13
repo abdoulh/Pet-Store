@@ -1,5 +1,11 @@
-import React from 'react';
-const ProductDetails = ({ selectedProduct, addToCart, currentUser }) => {
+import React, { useContext } from "react";
+import { UserContext } from '../App.jsx'
+
+
+const CartProductDetails = ({ selectedProduct, remove }) => {
+
+    const user = useContext(UserContext)
+
 
     return (
 
@@ -10,9 +16,9 @@ const ProductDetails = ({ selectedProduct, addToCart, currentUser }) => {
             <p>{selectedProduct.description.substring(0, 93)}...</p>
             <p>${selectedProduct.price}</p>
 
-            <a className="text-uppercase font-weight-bold" href="" onClick={(e) => { e.preventDefault(); addToCart(currentUser.userId, selectedProduct.id) }}>Add to cart</a>
+            <a className="text-uppercase font-weight-bold" href="" onClick={(e) => { e.preventDefault(); remove(user.userId, selectedProduct.id) }}>Remove</a>
         </div>
 
     )
 }
-export default ProductDetails;
+export default CartProductDetails;

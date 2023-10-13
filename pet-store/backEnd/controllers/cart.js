@@ -52,4 +52,22 @@ module.exports = {
             res.status(500).send(error);
         }
     },
+    removeAllFromCart: async (req, res) => {
+        const { id } = req.params
+        try {
+
+            const user = await User.findByPk(id);
+
+            if (!user) {
+                return res.status(404).json({ error: 'Product not found' });
+            }
+
+            await user.setProducts([]);
+
+            res.status(204).send('Cart empty');
+        } catch (error) {
+            console.error(error);
+            res.status(500).send(error);
+        }
+    },
 };
