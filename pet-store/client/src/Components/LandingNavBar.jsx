@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const LandingNavbar = () => {
+const LandingNavbar = ({handleSelect,onSearch}) => {
   const [catsDropdownOpen, setCatsDropdownOpen] = useState(false);
-
+  const [searchTerm, setSearchTerm] = useState('');
   const toggleCatsDropdown = () => {
     setCatsDropdownOpen(!catsDropdownOpen);
     setDogsDropdownOpen(false);
@@ -18,6 +18,12 @@ const LandingNavbar = () => {
   };
 
   const navigate = useNavigate()
+
+  const _handleSearch=()=>
+  {
+    onSearch(searchTerm)
+
+  }
 
 
   return (
@@ -54,13 +60,13 @@ const LandingNavbar = () => {
               </a>
               <div className={`dropdown-menu rounded-0 m-0 ${catsDropdownOpen ? "show" : ""
                 }`}>
-                <a href="blog.html" className="dropdown-item">
+                <a href="#" className="dropdown-item" onClick={()=>{handleSelect({category:"Toy" ,animal:"Cat"})}}>
                   Toys
                 </a>
-                <a href="single.html" className="dropdown-item">
+                <a href="#" className="dropdown-item" onClick={()=>{handleSelect({category:"Food" ,animal:"Cat"})}}>
                   Food
                 </a>
-                <a href="single.html" className="dropdown-item">
+                <a href="#" className="dropdown-item"onClick={()=>{handleSelect({category:"Upholstery" ,animal:"Cat"})}}>
                   Upholstery
                 </a>
               </div>
@@ -77,18 +83,33 @@ const LandingNavbar = () => {
 
               <div className={`dropdown-menu rounded-0 m-0 ${dogsDropdownOpen ? "show" : ""
                 }`}>
-                <a href="blog.html" className="dropdown-item">
+                <a href="#" className="dropdown-item"onClick={()=>{handleSelect({category:"Toy" ,animal:"Dog"})}}>
                   Toys
                 </a>
-                <a href="single.html" className="dropdown-item">
+                <a href="#" className="dropdown-item" onClick={()=>{handleSelect({category:"Food" ,animal:"Dog"})}}>
                   Food
                 </a>
-                <a href="single.html" className="dropdown-item">
+                <a href="#" className="dropdown-item" onClick={()=>{handleSelect({category:"Upholstery" ,animal:"Dog"})}}>
                   Upholstery
                 </a>
               </div>
             </div>
           </div>
+            
+          <div className="navbar-nav mr-auto py-0">
+             
+             <div className="navbar-nav mr-auto py-0">
+               <input
+                   type="text"
+                   placeholder="Search..."
+                   value={searchTerm}
+                   onChange={(e) => setSearchTerm(e.target.value)}
+                 
+               />
+
+               <button className="btn btn-lg btn-primary px-3 mx-3 d-lg-block" onClick={_handleSearch}>Search</button>
+             </div>
+       </div>
 
 
           <button

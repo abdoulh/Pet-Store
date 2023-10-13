@@ -23,8 +23,9 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState()
   const [currentUserRole, setCurrentUserRole] = useState(localStorage.getItem("role"));
   const[selectedByUser,setSelectedByUser]=useState(null)
-const [filterData,setFilterData]=useState([])
-
+  const [filterData,setFilterData]=useState([])
+  const [searchTerm,setSearchTerm]=useState('')
+ 
 
 
 
@@ -79,6 +80,13 @@ const [filterData,setFilterData]=useState([])
 
   },[selectedByUser])
 
+  const _handleSearch=(val)=>setSearchTerm(val)
+  useEffect(()=>{
+      const newData=products.filter(elem=>elem.name.toLowerCase().includes(searchTerm))
+      setFilterData(newData)
+  },[products,searchTerm])
+
+
 
 
 
@@ -89,7 +97,7 @@ const [filterData,setFilterData]=useState([])
         <Routes>
           <Route
             path="/"
-            element={<LandingPage setCurrentUser={setCurrentUser} items={products} addToCart={addToCart} currentUserID={currentUser} />}
+            element={<LandingPage setCurrentUser={setCurrentUser} items={filterData} handleSelct={handleSelct} addToCart={addToCart} currentUserID={currentUser}  onSearch={_handleSearch}/>}
           />
 
           <Route
@@ -104,7 +112,7 @@ const [filterData,setFilterData]=useState([])
 
           <Route path="/HomePage" element={<ProtectedRouteUser redirectPath="/" isAllowed={token && currentUserRole.includes("customer")} >
          
-            <HomePage items={filterData} handleSelct={handleSelct} addToCart={addToCart} currentUser={currentUser} />
+            <HomePage items={filterData} handleSelct={handleSelct} addToCart={addToCart} currentUser={currentUser} onSearch={_handleSearch} />
           </ProtectedRouteUser>
           }>
           </Route>
@@ -138,7 +146,9 @@ const [filterData,setFilterData]=useState([])
         </Routes>
       </Router>
     </UserContext.Provider>
+    
   );
+
 };
 
 export default App;
