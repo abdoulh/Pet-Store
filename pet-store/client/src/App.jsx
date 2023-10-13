@@ -22,6 +22,8 @@ const App = () => {
   const [users, setUsers] = useState([])
   const [currentUser, setCurrentUser] = useState()
   const [currentUserRole, setCurrentUserRole] = useState(localStorage.getItem("role"));
+  const[selectedByUser,setSelectedByUser]=useState(null)
+const [filterData,setFilterData]=useState([])
 
 
 
@@ -31,6 +33,7 @@ const App = () => {
       const { data } = await axios.get("http://localhost:3000/api/product")
       setProducts(data)
       getUserId()
+      setFilterData(data)
       console.log(data)
     } catch (error) {
       console.log(error);
@@ -65,7 +68,19 @@ const App = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+
+  }
+  const handleSelct=(val)=>setSelectedByUser(val)
+  useEffect(()=>{
+    if(selectedByUser){
+    const filteredList=products.filter(elem=>elem.animal===selectedByUser.animal&&elem.category===selectedByUser.category)
+    setFilterData(filteredList)
+    }
+
+  },[selectedByUser])
+
+
+
 
   return (
 
@@ -88,8 +103,8 @@ const App = () => {
           />
 
           <Route path="/HomePage" element={<ProtectedRouteUser redirectPath="/" isAllowed={token && currentUserRole.includes("customer")} >
-
-            <HomePage items={products} addToCart={addToCart} currentUser={currentUser} />
+         
+            <HomePage items={filterData} handleSelct={handleSelct} addToCart={addToCart} currentUser={currentUser} />
           </ProtectedRouteUser>
           }>
           </Route>
