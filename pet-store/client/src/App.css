@@ -11151,11 +11151,13 @@
 
   .cartPrice {
 
-    max-width: 400px;
+    max-width: 300px;
+    margin-right: 200px;
+
   }
 
   .cartName {
-    max-width: 380px;
+    max-width: 280px;
   }
 
   .modal-content-custom-cart {
@@ -11195,7 +11197,7 @@
   }
 
   .backGround {
-    height: 930px;
+    height: 730px;
     background: url(src/assets/img/toys.jpg);
     background-size: cover;
 
@@ -11215,7 +11217,7 @@
   .logo2 {
     position: absolute;
     top: 8%;
-    left: 25%;
+    left: 32%;
     font-weight: bold;
     font-size: 100px;
   }
@@ -11225,7 +11227,7 @@
     background-color: var(--primary);
     padding: 40px 30px 10px 30px;
     width: 500px;
-    height: 500px;
+    height: 470px;
     justify-content: center;
     position: absolute;
     top: 35%;
@@ -11247,4 +11249,9 @@
     padding-left: 10px;
     padding-bottom: 12px;
     padding-top: 20px;
+  }
+
+  .method {
+    color: white;
+    font-weight: bold;
   }

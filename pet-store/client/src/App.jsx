@@ -22,7 +22,10 @@ const App = () => {
   const [users, setUsers] = useState([])
   const [currentUser, setCurrentUser] = useState()
   const [currentUserRole, setCurrentUserRole] = useState(localStorage.getItem("role"));
-
+  const[selectedByUser,setSelectedByUser]=useState(null)
+  const [filterData,setFilterData]=useState([])
+  const [searchTerm,setSearchTerm]=useState('')
+ 
 
 
 
@@ -31,6 +34,7 @@ const App = () => {
       const { data } = await axios.get("http://localhost:3000/api/product")
       setProducts(data)
       getUserId()
+      setFilterData(data)
       console.log(data)
     } catch (error) {
       console.log(error);
@@ -59,11 +63,32 @@ const App = () => {
     try {
       const { data } = axios.post(
         "http://localhost:3000/api/carts/" + userID + "/" + productID
+
       );
+      console.log(data)
     } catch (error) {
       console.log(error);
     }
-  };
+
+  }
+  const handleSelct=(val)=>setSelectedByUser(val)
+  useEffect(()=>{
+    if(selectedByUser){
+    const filteredList=products.filter(elem=>elem.animal===selectedByUser.animal&&elem.category===selectedByUser.category)
+    setFilterData(filteredList)
+    }
+
+  },[selectedByUser])
+
+  const _handleSearch=(val)=>setSearchTerm(val)
+  useEffect(()=>{
+      const newData=products.filter(elem=>elem.name.toLowerCase().includes(searchTerm))
+      setFilterData(newData)
+  },[products,searchTerm])
+
+
+
+
 
   return (
 
@@ -72,7 +97,7 @@ const App = () => {
         <Routes>
           <Route
             path="/"
-            element={<LandingPage setCurrentUser={setCurrentUser} items={products} addToCart={addToCart} currentUserID={currentUser} />}
+            element={<LandingPage setCurrentUser={setCurrentUser} items={filterData} handleSelct={handleSelct} addToCart={addToCart} currentUserID={currentUser}  onSearch={_handleSearch}/>}
           />
 
           <Route
@@ -86,8 +111,8 @@ const App = () => {
           />
 
           <Route path="/HomePage" element={<ProtectedRouteUser redirectPath="/" isAllowed={token && currentUserRole.includes("customer")} >
-
-            <HomePage items={products} addToCart={addToCart} currentUserID={currentUser} />
+         
+            <HomePage items={filterData} handleSelct={handleSelct} addToCart={addToCart} currentUser={currentUser} onSearch={_handleSearch} />
           </ProtectedRouteUser>
           }>
           </Route>
@@ -121,7 +146,9 @@ const App = () => {
         </Routes>
       </Router>
     </UserContext.Provider>
+    
   );
+
 };
 
 export default App;
