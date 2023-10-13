@@ -4,9 +4,12 @@ import Navbar from "./Navbar.jsx";
 
 
 const HomePage = (props) => {
+
+
+
   return (
     <div className="container-fluid bg-light pt-50 pl-0 pr-0">
-      <Navbar />
+      <Navbar handleSelect={props.handleSelct}/>
       <div >
         <div className="d-flex flex-column text-center mb-5">
           <h1 className="display-4 m-0 py-5"><span className="text-primary">Premium</span> Pet Products</h1>
