@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import '../index.css';
 
-const AdminEditProduct = () => {
+const AdminEditProduct = ({selectedProduct}) => {
   const [editedProduct, setEditedProduct] = useState({
-    name: '',
-    category: '',
-    animal: '',
-    imageUrl: '',
-    description: '',
-    price: '',
+    name: selectedProduct.name,
+    category: selectedProduct.category,
+    animal:selectedProduct.animal,
+    imageUrl: selectedProduct.imageUrl,
+    description: selectedProduct.description,
+    price: selectedProduct.price,
   });
 
   const handleInputChange = (e) => {
@@ -18,6 +18,14 @@ const AdminEditProduct = () => {
     setEditedProduct({ ...editedProduct, [name]: value });
     console.log(editedProduct);
   };
+
+  const handleImage = (e) => {
+    const file = e.target.files[0]
+    setEditedProduct({ ...editedProduct, imageUrl: file })
+
+  }
+
+
 
   const EditProduct = async () => {
     try {
@@ -30,7 +38,7 @@ const AdminEditProduct = () => {
       formData.append("price", editedProduct.price);
 
       // Replace 'productId' with the actual product ID you want to edit
-      const productId = 'your_product_id_here';
+      const productId = selectedProduct.id
 
       await axios.put(
         `http://localhost:3000/api/product/${productId}`,
@@ -52,6 +60,7 @@ const AdminEditProduct = () => {
     event.preventDefault();
     await EditProduct();
   };
+  
 
   return (
     <div id="editProductModal" className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -64,9 +73,9 @@ const AdminEditProduct = () => {
               type="text"
               id="name"
               name="name"
-              value={editedProduct.name}
+              placeholder={selectedProduct.name}
               onChange={handleInputChange}
-              required
+              
             />
           </div>
           <div className="form-group">
@@ -74,7 +83,7 @@ const AdminEditProduct = () => {
             <select
               id="category"
               name="category"
-              value={editedProduct.category}
+              placeholder={selectedProduct.category}
               onChange={handleInputChange}
             >
               <option value="Food">Food</option>
@@ -87,7 +96,7 @@ const AdminEditProduct = () => {
             <select
               id="animal"
               name="animal"
-              value={editedProduct.animal}
+              placeholder={selectedProduct.animal}
               onChange={handleInputChange}
             >
               <option value="dog">Dog</option>
@@ -96,11 +105,12 @@ const AdminEditProduct = () => {
           </div>
           <div className="form-group">
             <label htmlFor="imageUrl">Image URL:</label>
-            <textarea
+            <input
               id="imageUrl"
               name="imageUrl"
-              value={editedProduct.imageUrl}
-              onChange={handleInputChange}
+              type='file'
+              placeholder={selectedProduct.imageUrl}
+              onChange={handleImage}
             />
           </div>
           <div className="form-group">
@@ -108,9 +118,9 @@ const AdminEditProduct = () => {
             <textarea
               id="description"
               name="description"
-              value={editedProduct.description}
+              placeholder={selectedProduct.description}
               onChange={handleInputChange}
-              required
+              
             />
           </div>
           <div className="form-group">
@@ -119,9 +129,9 @@ const AdminEditProduct = () => {
               type="number"
               id="price"
               name="price"
-              value={editedProduct.price}
+              placeholder={selectedProduct.price}
               onChange={handleInputChange}
-              required
+              
             />
           </div>
           <button type="submit">Edit Product</button>

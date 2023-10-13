@@ -19,35 +19,38 @@ const AdminAddProduct = ({ onAddProduct }) => {
     console.log(product)
   };
 
-   const addProduct = async (product) => {
+  const handleImage = (e) => {
+    const file = e.target.files[0]
+    setProduct({ ...product, imageUrl: file })
+
+  }
+
+  const addProduct = async (product) => {
     try {
       const formData = new FormData();
       formData.append("name", product.name);
       formData.append("category", product.category);
       formData.append("animal", product.animal)
-      formData.append("imageUrl", product.imageUrl)
+      formData.append("image", product.imageUrl)
       formData.append("description", product.description)
       formData.append("price", product.price)
-      await axios.post(
-        "http://localhost:3000/api/product",
-        formData, {
-          headers:{
-            "Content-Type": "multipart/form-data",
-          },
-        })
-
+      await axios.post("http://localhost:3000/api/product", formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
     } catch (error) {
       console.error(
         "Error adding product:",
         error.response ? error.response.data : error.message
       );
     }
-   }
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     addProduct(product)
-    
+
   }
 
 
@@ -96,11 +99,13 @@ const AdminAddProduct = ({ onAddProduct }) => {
             </div>
             <div className="form-group">
               <label htmlFor="imageUrl">imageURl</label>
-              <textarea
+              <input
+
+                type="file"
                 id="imageUrl"
                 name="imageUrl"
 
-                onChange={handleInputChange}
+                onChange={handleImage}
               />
             </div>
           </div>
