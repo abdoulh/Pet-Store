@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../index.css';
 
+
 const AdminAddProduct = ({ onAddProduct }) => {
   const [product, setProduct] = useState({
     name: "",
@@ -19,7 +20,7 @@ const AdminAddProduct = ({ onAddProduct }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const formData = new FormData();
+      const formData = new FormData();  
       formData.append("name", name);
       formData.append("category", category);
       formData.append("animal", animal)
