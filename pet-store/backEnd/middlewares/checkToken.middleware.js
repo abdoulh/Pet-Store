@@ -9,8 +9,8 @@ exports.checkTokenMiddleware = async (req, res, next) => {
       return res.status(401).json({ message: "Authorization token missing" });
     }
     var decoded = await jwt.verify(token, process.env.jwt_Secret);
-      req.userId = decoded.id
-      req.role = decoded.role
+    req.userId = decoded.id
+    req.role = decoded.role
     return next();
   } catch (error) {
     console.error(error);

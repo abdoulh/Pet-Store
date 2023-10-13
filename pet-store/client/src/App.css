@@ -29,6 +29,64 @@
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
+  img {
+    height: 50%;
+    width: 50%
+  }
+
+  body.active-modal {
+    overflow-y: hidden;
+  }
+
+  .btn-modal {
+    padding: 10px 20px;
+    display: block;
+    margin: 100px auto 0;
+    font-size: 18px;
+  }
+
+  .modal-custom {
+    z-index: 999999;
+  }
+
+  .modal-custom,
+  .overlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+  }
+
+  .overlay {
+    background: rgba(49, 49, 49, 0.8);
+  }
+
+  .modal-content-custom {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: white;
+    padding: 14px 28px;
+    border-radius: 3px;
+    max-width: 600px;
+    min-width: 300px;
+    max-height: 90vh;
+    overflow-y: auto;
+
+  }
+
+  .close-modal-custom {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 7px;
+  }
+
   *,
   *::before,
   *::after {
@@ -3984,7 +4042,7 @@
     display: block;
     min-height: 1.5rem;
     padding-left: 1.5rem;
-    color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   .custom-control-inline {
@@ -11053,7 +11111,7 @@
 
 
   .productImage {
-    height: 20vh;
+    height: 25vh;
     width: 20vh;
     position: static;
   }
@@ -11061,13 +11119,19 @@
   .cart-item {
     display: flex;
     justify-content: space-between;
+    flex-direction: row;
     align-items: center;
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid gray;
-    height: 40px
+    height: 40px;
   }
+
+
+
+
+
 
   .cart-list-button:hover {
     background-color: white;
@@ -11083,4 +11147,104 @@
     padding: 20px;
     border-radius: 1rem;
     margin-top: 3%;
+  }
+
+  .cartPrice {
+
+    max-width: 400px;
+  }
+
+  .cartName {
+    max-width: 380px;
+  }
+
+  .modal-content-custom-cart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: #ED6436;
+    padding: 14px 28px;
+    border-radius: 3px;
+    max-width: 600px;
+    min-width: 300px;
+    max-height: 90vh;
+    overflow-y: auto;
+
+  }
+
+  .checkoutForm {
+
+    width: 500px;
+    height: 470px;
+  }
+
+  .loginBox {
+
+    background-color: var(--primary);
+    padding: 50px 30px 10px 30px;
+    width: 500px;
+    height: 410px;
+    justify-content: center;
+    position: absolute;
+    top: 35%;
+    left: 5%;
+
+
+  }
+
+  .backGround {
+    height: 730px;
+    background: url(src/assets/img/toys.jpg);
+    background-size: cover;
+
+  }
+
+
+  .logo1 {
+    position: absolute;
+    top: 8%;
+    left: 5%;
+    font-weight: bold;
+    font-size: 100px;
+    color: var(--primary);
+
+  }
+
+  .logo2 {
+    position: absolute;
+    top: 8%;
+    left: 29%;
+    font-weight: bold;
+    font-size: 100px;
+  }
+
+
+  .singnUpBox {
+    background-color: var(--primary);
+    padding: 40px 30px 10px 30px;
+    width: 500px;
+    height: 470px;
+    justify-content: center;
+    position: absolute;
+    top: 35%;
+    left: 5%;
+
+  }
+
+  .cartButton {
+    background-image: url(src/assets/shopping-cart-solid.svg);
+    background-color: var(--primary);
+    display: flex;
+    overflow: hidden;
+    border: transparent;
+    border-radius: 5px 5px 5px 5px;
+    height: 49px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 35px center;
+    padding-left: 10px;
+    padding-bottom: 12px;
+    padding-top: 20px;
   }
