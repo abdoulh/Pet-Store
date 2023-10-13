@@ -11111,7 +11111,7 @@
 
 
   .productImage {
-    height: 20vh;
+    height: 25vh;
     width: 20vh;
     position: static;
   }
@@ -11178,4 +11178,73 @@
 
     width: 500px;
     height: 470px;
+  }
+
+  .loginBox {
+
+    background-color: var(--primary);
+    padding: 50px 30px 10px 30px;
+    width: 500px;
+    height: 410px;
+    justify-content: center;
+    position: absolute;
+    top: 35%;
+    left: 5%;
+
+
+  }
+
+  .backGround {
+    height: 730px;
+    background: url(src/assets/img/toys.jpg);
+    background-size: cover;
+
+  }
+
+
+  .logo1 {
+    position: absolute;
+    top: 8%;
+    left: 5%;
+    font-weight: bold;
+    font-size: 100px;
+    color: var(--primary);
+
+  }
+
+  .logo2 {
+    position: absolute;
+    top: 8%;
+    left: 29%;
+    font-weight: bold;
+    font-size: 100px;
+  }
+
+
+  .singnUpBox {
+    background-color: var(--primary);
+    padding: 40px 30px 10px 30px;
+    width: 500px;
+    height: 470px;
+    justify-content: center;
+    position: absolute;
+    top: 35%;
+    left: 5%;
+
+  }
+
+  .cartButton {
+    background-image: url(src/assets/shopping-cart-solid.svg);
+    background-color: var(--primary);
+    display: flex;
+    overflow: hidden;
+    border: transparent;
+    border-radius: 5px 5px 5px 5px;
+    height: 49px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 35px center;
+    padding-left: 10px;
+    padding-bottom: 12px;
+    padding-top: 20px;
   }

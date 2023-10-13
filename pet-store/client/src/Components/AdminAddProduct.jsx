@@ -13,29 +13,41 @@ const AdminAddProduct = ({ onAddProduct }) => {
     price: "",
   });
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const name = e.target.name
+    const value = e.target.value
     setProduct({ ...product, [name]: value });
+    console.log(product)
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+   const addProduct = async (product) => {
     try {
-      const formData = new FormData();  
-      formData.append("name", name);
-      formData.append("category", category);
-      formData.append("animal", animal)
-      formData.append("imageUrl", imageUrl)
-      formData.append("description", description)
-      formData.append("price", price)
-      const response = await axios.post(
+      const formData = new FormData();
+      formData.append("name", product.name);
+      formData.append("category", product.category);
+      formData.append("animal", product.animal)
+      formData.append("imageUrl", product.imageUrl)
+      formData.append("description", product.description)
+      formData.append("price", product.price)
+      await axios.post(
         "http://localhost:3000/api/product",
-        formData)
+        formData, {
+          headers:{
+            "Content-Type": "multipart/form-data",
+          },
+        })
+
     } catch (error) {
       console.error(
-        "Error adding post:",
+        "Error adding product:",
         error.response ? error.response.data : error.message
       );
     }
+   }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    addProduct(product)
+    
   }
 
 
@@ -44,6 +56,8 @@ const AdminAddProduct = ({ onAddProduct }) => {
     <div id="createProductModal" className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
       <div className="modal-box">
         <h2>Add Product</h2>
+
+
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">Product Name:</label>
@@ -51,7 +65,7 @@ const AdminAddProduct = ({ onAddProduct }) => {
               type="text"
               id="name"
               name="name"
-              value={product.name}
+
               onChange={handleInputChange}
               required
             />
@@ -61,20 +75,41 @@ const AdminAddProduct = ({ onAddProduct }) => {
             <select
               id="category"
               name="category"
-              value={product.category}
+
               onChange={handleInputChange}
             >
               <option value="Food">Food</option>
               <option value="Toy">Toy</option>
               <option value="Upholstery">Upholstery</option>
             </select>
+            <div className="form-group">
+              <label htmlFor="animal">Animal:</label>
+              <select
+                id="animal"
+                name="animal"
+
+                onChange={handleInputChange}
+              >
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label htmlFor="imageUrl">imageURl</label>
+              <textarea
+                id="imageUrl"
+                name="imageUrl"
+
+                onChange={handleInputChange}
+              />
+            </div>
           </div>
           <div className="form-group">
             <label htmlFor="description">Description:</label>
             <textarea
               id="description"
               name="description"
-              value={product.description}
+
               onChange={handleInputChange}
               required
             />
@@ -85,24 +120,14 @@ const AdminAddProduct = ({ onAddProduct }) => {
               type="number"
               id="price"
               name="price"
-              value={product.price}
+
               onChange={handleInputChange}
               required
             />
           </div>
           <div className="form-group">
-            <label htmlFor="animal">Animal:</label>
-            <select
-              id="animal"
-              name="animal"
-              value={product.animal}
-              onChange={handleInputChange}
-            >
-              <option value="dog">Dog</option>
-              <option value="cat">Cat</option>
-            </select>
+            <input type="submit" value='Add product' />
           </div>
-          <button type="submit">Add Product</button>
         </form>
       </div>
     </div>
