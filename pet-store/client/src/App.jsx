@@ -146,7 +146,9 @@ const App = () => {
         </Routes>
       </Router>
     </UserContext.Provider>
+    
   );
+
 };
 
 export default App;
