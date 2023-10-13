@@ -59,7 +59,9 @@ const App = () => {
     try {
       const { data } = axios.post(
         "http://localhost:3000/api/carts/" + userID + "/" + productID
+
       );
+      console.log(data)
     } catch (error) {
       console.log(error);
     }
@@ -87,7 +89,7 @@ const App = () => {
 
           <Route path="/HomePage" element={<ProtectedRouteUser redirectPath="/" isAllowed={token && currentUserRole.includes("customer")} >
 
-            <HomePage items={products} addToCart={addToCart} currentUserID={currentUser} />
+            <HomePage items={products} addToCart={addToCart} currentUser={currentUser} />
           </ProtectedRouteUser>
           }>
           </Route>
