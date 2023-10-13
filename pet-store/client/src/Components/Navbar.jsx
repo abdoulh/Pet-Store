@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 
 
+
 const Navbar = ({handleSelect,onSearch}) => {
   const [catsDropdownOpen, setCatsDropdownOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  
- 
+  const [searchTerm, setSearchTerm] = useState('');  
+
 
   const toggleCatsDropdown = () => {
     setCatsDropdownOpen(!catsDropdownOpen);
@@ -19,7 +19,7 @@ const Navbar = ({handleSelect,onSearch}) => {
     setDogsDropdownOpen(!dogsDropdownOpen);
     setCatsDropdownOpen(false)
   };
- 
+
 
 
 
@@ -60,20 +60,20 @@ const Navbar = ({handleSelect,onSearch}) => {
                 className="nav-link dropdown-toggle"
                 data-toggle="dropdown"
                 onClick={toggleCatsDropdown}
-                >
+              >
                 Cats
               </a>
               <div className={`dropdown-menu rounded-0 m-0 ${catsDropdownOpen ? "show" : ""
                 }`}
-                >
-                <a href="#" className="dropdown-item" onClick={()=>{handleSelect({category:"Toy" ,animal:"Cat"})}}>
-                  toys
+              >
+                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Toy", animal: "Cat" }) }}>
+                  Toys
                 </a>
-                <a href="#" className="dropdown-item"onClick={()=>{handleSelect({category:"Food" ,animal:"Cat"})}}>
-                  food  
+                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Food", animal: "Cat" }) }}>
+                  Food
                 </a>
-                <a href="#" className="dropdown-item" onClick={()=>{handleSelect({category:"Upholstery" ,animal:"Cat"})}}>
-                  upholstery
+                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Upholstery", animal: "Cat" }) }}>
+                  Upholstery
                 </a>
               </div>
             </div>
@@ -89,14 +89,14 @@ const Navbar = ({handleSelect,onSearch}) => {
 
               <div className={`dropdown-menu rounded-0 m-0 ${dogsDropdownOpen ? "show" : ""
                 }`}>
-                <a href="#" className="dropdown-item" onClick={()=>{handleSelect({category:"Toy" ,animal:"Dog"})}}>
-                  toys
+                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Toy", animal: "Dog" }) }}>
+                  Toys
                 </a>
-                <a href="#" className="dropdown-item"  onClick={()=>{handleSelect({category:"Food" ,animal:"Dog"})}}> 
-                  food
+                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Food", animal: "Dog" }) }}>
+                  Food
                 </a>
-                <a href="#" className="dropdown-item"  onClick={()=>{handleSelect({category:"Upholstery" ,animal:"Dog"})}}>
-                  upholstery
+                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Upholstery", animal: "Dog" }) }}>
+                  Upholstery
                 </a>
               </div>
             </div>
