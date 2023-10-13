@@ -11,7 +11,7 @@ router.route('/product')
        .get(getAllProducts)
        .post(upload.single('image'), createProduct)
 router.route('/product/:id')
-       .put(updateProduct)
+       .put(upload.single('imageUrl'), updateProduct)
        .delete(deleteProduct)
 
 module.exports = router    

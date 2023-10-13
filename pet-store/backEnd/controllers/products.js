@@ -42,7 +42,7 @@ module.exports = {
     },
     updateProduct: async (req, res) => {
         try {
-            const { name, category, animal, imageUrl, description, price } = req.body
+            const { name, category, animal, description, price } = req.body
             const productId = req.params.id;
             const imageBuffer = req.file.buffer;
             const imageStream = Readable.from(imageBuffer)
@@ -57,7 +57,7 @@ module.exports = {
                     }
                     console.log(cloudinaryResult)
 
-                    const updatedProduct = await Product.update({ name, category, animal, imageUrl, description, price }, { where: { id: productId } });
+                    const updatedProduct = await Product.update({ name, category, animal, imageUrl: result.secure_url, description, price }, { where: { id: productId } });
                     res.status(200).json(updatedProduct)
                 }
             )

@@ -61,7 +61,7 @@ const AdminProductList = () => {
                 <div className="modal-custom">
                     <div onClick={toggleEditProductModal} className="overlay"></div>
                     <div className="modal-content-custom-cart">
-                        <AdminEditProduct product={selectedProduct} />
+                        <AdminEditProduct selectedProduct={selectedProduct} />
                     </div>
                 </div>
             )}
@@ -87,7 +87,7 @@ const AdminProductList = () => {
                                 <td>{product.animal}</td>
                                 <td>{product.description}</td>
                                 <td>
-                                    <button className="admin-product-edit-button" onClick={() => toggleEditProductModal(product.id)}>Edit</button>
+                                    <button className="admin-product-edit-button" onClick={() =>{ toggleEditProductModal(product.id); setSelectedProduct(product)}}>Edit</button>
                                     <button className="admin-product-delete-button" onClick={() => removeFromCart(product.id)}>Delete</button>
                                 </td>
                             </tr>
