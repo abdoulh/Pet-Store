@@ -1,10 +1,12 @@
-const cloudinary =require("clouadiray").v2;
+const cloudinary =require("cloudinary").v2;
+require("dotenv").config()
 
 
+    
 cloudinary.config({
-    cloud_name:process.env.cloud_name,
-    api_key:process.env.cloud_key,
-    api_secret:process.env.cloud_key_secret,
+    cloud_name:process.env.CLOUD_NAME,
+    api_key:process.env.CLOUD_KEY,
+    api_secret:process.env.CLOUD_KEY_SECRET,
 })
 
-export default cloudinary;
+module.exports=cloudinary;
