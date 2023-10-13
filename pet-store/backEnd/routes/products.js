@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer')
+
+const upload = multer()
 
 
 const {getAllProducts, createProduct, updateProduct, deleteProduct, getOneProduct} = require('../controllers/products')
 
 router.route('/product')
        .get(getAllProducts)
-       .post(createProduct)
+       .post(upload.array(),createProduct)
 router.route('/product/:id')
        .put(updateProduct)
        .delete(deleteProduct)
