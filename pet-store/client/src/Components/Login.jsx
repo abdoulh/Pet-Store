@@ -7,7 +7,7 @@ const Login = ({ signup }) => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate()
-  const login = async (email, password) => {
+   const login = async (email, password) => {
     try {
       const response = await axios.post(
         "http://localhost:3000/api/users/signin",
@@ -21,9 +21,6 @@ const Login = ({ signup }) => {
       localStorage.setItem("role", response.data.payload.role);
       if (response.data.payload.role === "customer") {
         navigate("/HomePage")
-
-        return
-
 
       } else if (response.data.payload.role === "admin") {
         navigate("/AdminProductList")
@@ -92,3 +89,4 @@ const Login = ({ signup }) => {
 };
 
 export default Login;
+
