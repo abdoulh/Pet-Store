@@ -16,7 +16,7 @@ const Cart = () => {
     const fetchAllCartItems = async () => {
         console.log(user)
         try {
-            const { data } = await axios.get('http://localhost:3000/api/carts/' + user)
+            const { data } = await axios.get('http://localhost:3000/api/carts/' + user.userId)
             setCart(data)
         } catch (error) {
             console.log(error)

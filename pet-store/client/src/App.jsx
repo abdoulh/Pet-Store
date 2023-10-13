@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./Components/LandingPage.jsx";
 import HomePage from "./Components/HomePage.jsx";
 import Cart from "./Components/Cart.jsx";
+import Login from "./Components/Login.jsx";
+import SignUp from "./Components/SignUp.jsx";
 import AdminAddProduct from "./Components/AdminAddProduct.jsx";
 import AdminProductList from "./Components/AdminProductList.jsx";
 import AdminUsersList from "./Components/AdminUsersList.jsx";
@@ -18,7 +20,7 @@ export const UserContext = createContext();
 const App = () => {
   const [products, setProducts] = useState([])
   const [users, setUsers] = useState([])
-  const [currentUserID, setCurrentUserID] = useState()
+  const [currentUser, setCurrentUser] = useState()
   const [currentUserRole, setCurrentUserRole] = useState(localStorage.getItem("role"));
 
 
@@ -46,7 +48,7 @@ const App = () => {
         localStorage.getItem("token")
       );
       console.log(data.payload.userId);
-      setCurrentUserID(data.payload.userId)
+      setCurrentUser(data.payload)
     } catch (error) {
       console.log(error);
     }
@@ -65,49 +67,59 @@ const App = () => {
 
   return (
 
-<UserContext.Provider value={currentUserID}>
-    <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={<LandingPage setCurrentUser={setCurrentUserID} />}
-        />
+    <UserContext.Provider value={currentUser}>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={<LandingPage setCurrentUser={setCurrentUser} items={products} addToCart={addToCart} currentUserID={currentUser} />}
+          />
 
-        <Route path="/HomePage" element={<ProtectedRouteUser redirectPath="/"  isAllowed={ token && currentUserRole.includes("customer")} >
-         
-          <HomePage items={products}   addToCart={addToCart}  currentUserID={currentUserID} />
-    </ProtectedRouteUser>
-  }>
-        </Route>
+          <Route
+            path="/Login"
+            element={<Login />}
+          />
 
-        <Route path="/Cart" element={<ProtectedRouteUser redirectPath="/"  isAllowed={ token && currentUserRole.includes("customer")} >
-        <Cart getUserId={getUserId} />
-        </ProtectedRouteUser>
-      }>
+          <Route
+            path="/SignUp"
+            element={<SignUp />}
+          />
 
-       </Route>
+          <Route path="/HomePage" element={<ProtectedRouteUser redirectPath="/" isAllowed={token && currentUserRole.includes("customer")} >
 
-        
-        <Route path ="AdminProductList" element={<ProtectedRouteAdmin redirectPath="/"  isAllowed={ token && currentUserRole.includes("admin")} >
-          
-        <AdminProductList />
-            </ProtectedRouteAdmin>
+            <HomePage items={products} addToCart={addToCart} currentUserID={currentUser} />
+          </ProtectedRouteUser>
           }>
-      
-        </Route>
-        <Route path="AdminUsersList" element={<ProtectedRouteAdmin redirectPath="/"  isAllowed={ token && currentUserRole.includes("admin")} >
-          <AdminUsersList />
-            </ProtectedRouteAdmin>
-          }>
-    </Route>
-    <Route path="AdminAddProduct" element={<ProtectedRouteAdmin redirectPath="/"  isAllowed={ token && currentUserRole.includes("admin")} >
-          <AdminAddProduct />
-            </ProtectedRouteAdmin>
-          }>
-    </Route>
+          </Route>
 
-      </Routes>
-    </Router>
+          <Route path="/Cart" element={<ProtectedRouteUser redirectPath="/" isAllowed={token && currentUserRole.includes("customer")} >
+            <Cart getUserId={getUserId} />
+          </ProtectedRouteUser>
+          }>
+
+          </Route>
+
+
+          <Route path="AdminProductList" element={<ProtectedRouteAdmin redirectPath="/" isAllowed={token && currentUserRole.includes("admin")} >
+
+            <AdminProductList />
+          </ProtectedRouteAdmin>
+          }>
+
+          </Route>
+          <Route path="AdminUsersList" element={<ProtectedRouteAdmin redirectPath="/" isAllowed={token && currentUserRole.includes("admin")} >
+            <AdminUsersList />
+          </ProtectedRouteAdmin>
+          }>
+          </Route>
+          <Route path="AdminAddProduct" element={<ProtectedRouteAdmin redirectPath="/" isAllowed={token && currentUserRole.includes("admin")} >
+            <AdminAddProduct />
+          </ProtectedRouteAdmin>
+          }>
+          </Route>
+
+        </Routes>
+      </Router>
     </UserContext.Provider>
   );
 };

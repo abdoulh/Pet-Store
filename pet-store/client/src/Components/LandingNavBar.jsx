@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const Navbar = () => {
+const LandingNavbar = () => {
   const [catsDropdownOpen, setCatsDropdownOpen] = useState(false);
 
   const toggleCatsDropdown = () => {
@@ -18,7 +18,6 @@ const Navbar = () => {
   };
 
   const navigate = useNavigate()
-
 
 
   return (
@@ -39,9 +38,10 @@ const Navbar = () => {
           id="navbarCollapse"
         >
           <div className="navbar-nav mr-auto py-0">
-            <a href="HomePage" className="nav-item nav-link active">
+            <a href="/" className="nav-item nav-link active">
               Home
             </a>
+
 
             <div className="nav-item dropdown">
               <a
@@ -88,22 +88,21 @@ const Navbar = () => {
                 </a>
               </div>
             </div>
-
-
           </div>
 
 
           <button
-            className="cartButton  px-5 mx-3"
-            onClick={() => { navigate("/Cart") }}
+            className="btn btn-lg btn-primary px-3 d-none d-lg-block"
+            onClick={() => { navigate("/Login") }}
           >
-
+            Log in
           </button>
+
           <button
-            className="btn btn-lg btn-primary px-3 mx-3 d-lg-block"
-            onClick={() => { localStorage.clear(); navigate('/') }}
+            className="btn btn-lg btn-primary px-3 mx-3 d-none d-lg-block"
+            onClick={() => { navigate("/SignUp") }}
           >
-            Log out
+            Register
           </button>
 
 
@@ -113,4 +112,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default LandingNavbar;
