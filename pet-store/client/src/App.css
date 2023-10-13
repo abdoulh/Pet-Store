@@ -11195,7 +11195,7 @@
   }
 
   .backGround {
-    height: 720px;
+    height: 730px;
     background: url(src/assets/img/toys.jpg);
     background-size: cover;
 
@@ -11225,7 +11225,7 @@
     background-color: var(--primary);
     padding: 40px 30px 10px 30px;
     width: 500px;
-    height: 500px;
+    height: 470px;
     justify-content: center;
     position: absolute;
     top: 35%;
