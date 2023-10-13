@@ -11195,7 +11195,7 @@
   }
 
   .backGround {
-    height: 930px;
+    height: 720px;
     background: url(src/assets/img/toys.jpg);
     background-size: cover;
 
@@ -11215,7 +11215,7 @@
   .logo2 {
     position: absolute;
     top: 8%;
-    left: 25%;
+    left: 32%;
     font-weight: bold;
     font-size: 100px;
   }
