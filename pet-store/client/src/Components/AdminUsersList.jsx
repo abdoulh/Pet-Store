@@ -12,6 +12,11 @@ const AdminUsersList = () => {
     const navigate = useNavigate()
 
 
+    const customers = users.slice().filter((user) => {
+        return user.role === 'customer'
+    })
+
+
     const fetchUsers = async () => {
 
         try {
@@ -79,7 +84,7 @@ const AdminUsersList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map((user, index) => (
+                        {customers.map((user, index) => (
                             <tr key={index}>
                                 <td>{user.firstName}</td>
                                 <td>{user.lastName}</td>
