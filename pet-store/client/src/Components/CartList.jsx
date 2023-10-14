@@ -1,13 +1,15 @@
 import React, { useContext, useState } from "react";
-import axios from "axios";
+import axios from '../services/axios-interceptor'
 import { UserContext } from '../App.jsx'
 import CartProductDetails from "./CartProductDetails.jsx";
+import { useNavigate } from "react-router-dom";
 
 
 const CartList = ({ item, fetchAllCartItems }) => {
 
     const user = useContext(UserContext)
 
+    const navigate = useNavigate()
 
     const [modal, setModal] = useState(false);
 
@@ -28,8 +30,11 @@ const CartList = ({ item, fetchAllCartItems }) => {
             fetchAllCartItems()
 
         } catch (error) {
-            console.log(error)
-
+            if (error.response.status === 401) {
+                localStorage.clear()
+                navigate('/Login')
+            }
+            console.log(error.message);
         }
 
     }

@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from '../services/axios-interceptor';
 import '../index.css';
+import { useNavigate } from "react-router-dom";
 
 
 const AdminAddProduct = ({ onAddProduct }) => {
+
+  const navigate = useNavigate()
+
+
   const [product, setProduct] = useState({
     name: "",
     category: "",
@@ -34,16 +39,21 @@ const AdminAddProduct = ({ onAddProduct }) => {
       formData.append("image", product.imageUrl)
       formData.append("description", product.description)
       formData.append("price", product.price)
-      await axios.post("http://localhost:3000/api/product", formData, {
+      await axios.post("http://localhost:3000/api/product/admin", formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
     } catch (error) {
-      console.error(
-        "Error adding product:",
-        error.response ? error.response.data : error.message
-      );
+
+      if (error.response.status === 401) {
+        localStorage.clear()
+        navigate('/Login')
+      }
+      else if (error.response.status === 403) {
+        navigate('/HomePage')
+      }
+
     }
   }
 
@@ -81,6 +91,7 @@ const AdminAddProduct = ({ onAddProduct }) => {
 
               onChange={handleInputChange}
             >
+              <option disabled selected value=''> Select product category </option>
               <option value="Food">Food</option>
               <option value="Toy">Toy</option>
               <option value="Upholstery">Upholstery</option>
@@ -93,6 +104,7 @@ const AdminAddProduct = ({ onAddProduct }) => {
 
                 onChange={handleInputChange}
               >
+                <option disabled selected value=''> Select animal</option>
                 <option value="dog">Dog</option>
                 <option value="cat">Cat</option>
               </select>
