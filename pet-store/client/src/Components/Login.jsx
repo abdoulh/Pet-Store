@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ signup , setCurrentUserRole}) => {
+const Login = ({ signup, setCurrentUserRole }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate()
-   const login = async (email, password) => {
+  const login = async (email, password) => {
     try {
       const response = await axios.post(
         "http://localhost:3000/api/users/signin",
@@ -73,14 +73,14 @@ const Login = ({ signup , setCurrentUserRole}) => {
               className="btn btn-dark btn-block border-0 py-3"
               onClick={(e) => { handleLogin(e) }}
             >
-              Log In
+              Log in
             </button>
           </div>
           <div>
             <a
               className="link" onClick={() => { navigate('/SignUp') }}
             >
-              You don't have an account? Sign UP
+              You don't have an account? Sign UP!
             </a>
           </div>
         </form>
