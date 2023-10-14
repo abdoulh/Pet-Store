@@ -50,8 +50,7 @@ const SignUp = ({ login }) => {
   const handleSignup = async () => {
     try {
       const response = await signup(firstName, lastName, email, password);
-      console.log(response);
-      // navigate("/Login");
+      console.log(response)
     } catch (err) {
       console.error(err);
     }
@@ -122,7 +121,7 @@ const SignUp = ({ login }) => {
                   navigate("/Login");
                 }}
               >
-                Already have an account? Log In
+                Already have an account? Log in
               </a>
             </div>
           </div>

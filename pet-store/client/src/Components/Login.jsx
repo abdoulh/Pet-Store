@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ signup }) => {
+const Login = ({ signup , setCurrentUserRole}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate()
-  const login = async (email, password) => {
+   const login = async (email, password) => {
     try {
       const response = await axios.post(
         "http://localhost:3000/api/users/signin",
@@ -19,11 +19,9 @@ const Login = ({ signup }) => {
       console.log("login succed", response.data);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("role", response.data.payload.role);
+      setCurrentUserRole(response.data.payload.role)
       if (response.data.payload.role === "customer") {
         navigate("/HomePage")
-
-        return
-
 
       } else if (response.data.payload.role === "admin") {
         navigate("/AdminProductList")
@@ -75,14 +73,14 @@ const Login = ({ signup }) => {
               className="btn btn-dark btn-block border-0 py-3"
               onClick={(e) => { handleLogin(e) }}
             >
-              Log In
+              Log in
             </button>
           </div>
           <div>
             <a
               className="link" onClick={() => { navigate('/SignUp') }}
             >
-              You don't have an account? Sign UP
+              You don't have an account? Sign UP!
             </a>
           </div>
         </form>
@@ -94,3 +92,4 @@ const Login = ({ signup }) => {
 };
 
 export default Login;
+

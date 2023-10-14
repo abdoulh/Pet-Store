@@ -123,7 +123,7 @@
     text-align: left;
     background-color: #fff;
     width: 100%;
-    height: 100%;
+    height: 100vh;
   }
 
   [tabindex="-1"]:focus:not(:focus-visible) {
@@ -328,12 +328,7 @@
     word-wrap: normal;
   }
 
-  button,
-  [type="button"],
-  [type="reset"],
-  [type="submit"] {
-    -webkit-appearance: button;
-  }
+
 
   button:not(:disabled),
   [type="button"]:not(:disabled),
@@ -397,7 +392,7 @@
 
   [type="search"] {
     outline-offset: -2px;
-    -webkit-appearance: none;
+   
   }
 
   [type="search"]::-webkit-search-decoration {
@@ -5042,7 +5037,7 @@
 
     max-width: 15vh;
     height: 5vh;
-    margin-left: 16vh;
+    margin-left: 24vh;
     margin-top: 3vh;
     border-radius: 5px
   }
@@ -11112,6 +11107,11 @@
 
   }
 
+  .link:hover {
+    cursor: pointer;
+
+  }
+
   .testimonial-carousel .owl-dot.active {
     background: #ED6436;
   }
@@ -11251,12 +11251,14 @@
     position: absolute;
     top: 35%;
     left: 5%;
+    border-radius: 8px;
+
 
 
   }
 
   .backGround {
-    height: 730px;
+    height: 100vh;
     background: url(src/assets/img/toys.jpg);
     background-size: cover;
 
@@ -11280,7 +11282,7 @@
   .logo2 {
     position: absolute;
     top: 8%;
-    left: 32%;
+    left: 28.9%;
     font-weight: bold;
     font-size: 100px;
   }
@@ -11295,6 +11297,8 @@
     position: absolute;
     top: 35%;
     left: 5%;
+    border-radius: 8px;
+
 
   }
 

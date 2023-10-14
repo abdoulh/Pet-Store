@@ -88,7 +88,7 @@ const App = () => {
 
 
 
-
+// console.log(currentUserRole);
 
   return (
 
@@ -102,7 +102,7 @@ const App = () => {
 
           <Route
             path="/Login"
-            element={<Login />}
+            element={<Login setCurrentUserRole = {setCurrentUserRole}/>}
           />
 
           <Route

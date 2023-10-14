@@ -81,6 +81,7 @@ const AdminAddProduct = ({ onAddProduct }) => {
 
               onChange={handleInputChange}
             >
+              <option disabled selected value=''> Select product category </option>
               <option value="Food">Food</option>
               <option value="Toy">Toy</option>
               <option value="Upholstery">Upholstery</option>
@@ -93,6 +94,7 @@ const AdminAddProduct = ({ onAddProduct }) => {
 
                 onChange={handleInputChange}
               >
+                <option disabled selected value=''> Select animal</option>
                 <option value="dog">Dog</option>
                 <option value="cat">Cat</option>
               </select>
