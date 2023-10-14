@@ -44,6 +44,8 @@ const AdminAddProduct = ({ onAddProduct }) => {
           'Content-Type': 'multipart/form-data',
         },
       });
+      navigate("/AdminProductList",window.location.reload());
+      
     } catch (error) {
 
       if (error.response.status === 401) {
@@ -56,10 +58,13 @@ const AdminAddProduct = ({ onAddProduct }) => {
 
     }
   }
+  const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     addProduct(product)
+
+
 
   }
 
@@ -144,6 +149,7 @@ const AdminAddProduct = ({ onAddProduct }) => {
           </div>
           <div className="form-group">
             <input type="submit" value='Add product' />
+
           </div>
         </form>
       </div>

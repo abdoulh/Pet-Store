@@ -27,6 +27,27 @@ const ConfirmationModal = ({ isOpen, onCancel, onConfirm }) => {
     );
 };
 
+const ConfirmationModal = ({ isOpen, onCancel, onConfirm }) => {
+    if (!isOpen) return null;
+
+    return (
+        <div
+            id="ConfirmationModal"
+            className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+        >
+            <div className="modal-box">
+                <div className="confirmation-message">
+                    Are you sure you want to delete this product?
+                </div>
+                <div className="confirmation-buttons">
+                    <button onClick={onConfirm}>Yes</button>
+                    <button onClick={onCancel}>No</button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const AdminProductList = () => {
     const [products, setProducts] = useState([]);
     const [addProductModal, setAddProductModal] = useState(false);
@@ -34,7 +55,9 @@ const AdminProductList = () => {
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
+
     const navigate = useNavigate()
+
 
     const toggleAddProductModal = () => {
         setAddProductModal(!addProductModal);
@@ -50,6 +73,7 @@ const AdminProductList = () => {
         setSelectedProduct(productId);
     };
 
+
     const fetchAllProducts = async () => {
         try {
             const response = await axios.get('http://localhost:3000/api/product/admin');
@@ -63,6 +87,7 @@ const AdminProductList = () => {
             }
             else if (error.response.status === 403) {
                 navigate('/HomePage')
+
             }
         }
     }
@@ -72,8 +97,6 @@ const AdminProductList = () => {
 
         fetchAllProducts();
     }, []);
-
-    
 
     const removeFromCart = (productId) => {
         toggleDeleteModal(productId);
@@ -87,6 +110,7 @@ const AdminProductList = () => {
                 setProducts(products.filter((product) => product.id !== productId));
                 console.log("Product deleted successfully");
             } catch (error) {
+
                console.error('Error deleting product', error);
 
             if (error.response.status === 401) {
@@ -166,8 +190,7 @@ const AdminProductList = () => {
                                         <button
                                             className="admin-product-edit-button"
                                             onClick={() => {
-                                                toggleEditProductModal(product.id);
-                                                setSelectedProduct(product.id);
+                                                toggleEditProductModal(product);                                       
                                             }}
                                         >
                                             Edit
