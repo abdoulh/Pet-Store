@@ -49,14 +49,16 @@ const SignUp = ({ login }) => {
 
   const validator = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+
     if (!emailRegex.test(email)) {
       setErrorMsgEmail('Invalid email format');
       return false;
     }
     setErrorMsgEmail('')
 
-    if (password.length < 8) {
-      setErrorMsgPassword('Password should be at least 8 characters long');
+    if (!passwordRegex.test(password)) {
+      setErrorMsgPassword('Password should have minimum 8 characters, at least one letter and one number')
       return false;
     }
 
