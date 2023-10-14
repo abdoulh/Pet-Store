@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const Checkout = () => {
+const Checkout = ({ toggle, thanks }) => {
 
 
     const user = useContext(UserContext)
@@ -16,11 +16,7 @@ const Checkout = () => {
 
 
     const [paymentInfo, setPaymentInfo] = useState({})
-    const [modal, setModal] = useState(false);
 
-    const toggleModal = () => {
-        setModal(!modal);
-    };
 
 
     const removeAllCartItems = async () => {
@@ -51,7 +47,9 @@ const Checkout = () => {
         e.preventDefault()
         if (paymentInfo.paymentMethod === 'Cash') {
             removeAllCartItems()
-            toggleModal()
+            toggle()
+            thanks()
+
 
 
 
@@ -59,7 +57,8 @@ const Checkout = () => {
         else if (paymentInfo.paymentMethod === 'Credit/Debit Card' && paymentInfo.cardNumber.length === 16) {
 
             removeAllCartItems()
-            toggleModal()
+            toggle()
+            thanks()
 
 
 
@@ -77,9 +76,10 @@ const Checkout = () => {
             <form className="py-5" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <input
-                        type="text"
+                        type="tel"
                         className="form-control border-0 p-4 my-2"
                         placeholder="Your phone number"
+                        pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]"
                         required="required"
                         onChange={handlePayment} />
                 </div>
@@ -139,19 +139,6 @@ const Checkout = () => {
 
                 </div>
             </form>
-            {
-                modal && (
-                    <div className="modal-custom">
-                        <div onClick={toggleModal} className="overlay"></div>
-                        <div className="modal-content-custom-cart">
-                            <h1>Thank you for your Business!</h1>
-                            <button className="close-modal-custom btn btn-lg btn-dark px- d-none d-lg-block" onClick={() => { navigate(0) }}>
-                                Back
-                            </button>
-                        </div>
-                    </div>
-                )
-            }
         </div>
 
     )

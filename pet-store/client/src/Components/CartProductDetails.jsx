@@ -16,7 +16,7 @@ const CartProductDetails = ({ selectedProduct, remove }) => {
             <p>{selectedProduct.description.substring(0, 93)}...</p>
             <p>${selectedProduct.price}</p>
 
-            <a className="text-uppercase font-weight-bold" href="" onClick={(e) => { e.preventDefault(); remove(user.userId, selectedProduct.id) }}>Remove</a>
+            <button className="remove text-uppercase font-weight-bold btn-dark" href="" onClick={(e) => { e.preventDefault(); remove(user.userId, selectedProduct.id) }}>Remove</button>
         </div>
 
     )

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AdminNav = () => {
 
-
+    const navigate = useNavigate()
     return (
 
         <div className="container-fluid p-0">
@@ -35,8 +36,9 @@ const AdminNav = () => {
                     <a
                        
                         className="btn btn-lg btn-primary px-3 d-none d-lg-block"
+                        onClick={()=>{localStorage.clear();navigate('/Login')}}
                     >
-                        Logout
+                        Log out
                     </a>
 
 
