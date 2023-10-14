@@ -116,7 +116,7 @@ const Navbar = ({ handleSelect, onSearch }) => {
           </button>
           <button
             className="logout btn btn-lg btn-primary px-3 mx-3 d-lg-block"
-            onClick={() => { localStorage.clear(); navigate('/') }}
+            onClick={() => { localStorage.clear(); navigate('/Login') }}
           >
             Log out
           </button>

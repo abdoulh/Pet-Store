@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from '../services/axios-interceptor'
 import React, { useState, useContext } from "react";
 import { UserContext } from '../App.jsx'
 import { useNavigate } from "react-router-dom";
@@ -27,7 +27,11 @@ const Checkout = ({ toggle, thanks }) => {
             console.log('removed')
 
         } catch (error) {
-            console.log(error);
+            if (error.response.status === 401) {
+                localStorage.clear()
+                navigate('/Login')
+            }
+            console.log(error.message);
         }
 
 

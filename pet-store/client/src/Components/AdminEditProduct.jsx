@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from '../services/axios-interceptor';
 import '../index.css';
 import { useNavigate } from "react-router-dom";
 
 const AdminEditProduct = ({ selectedProduct }) => {
+
+  const navigate = useNavigate()
+
   const [editedProduct, setEditedProduct] = useState({
     name: selectedProduct.name,
     category: selectedProduct.category,
@@ -25,7 +28,6 @@ const AdminEditProduct = ({ selectedProduct }) => {
     setEditedProduct({ ...editedProduct, imageUrl: file })
 
   }
-  const navigate = useNavigate()
 
 
 
@@ -39,7 +41,7 @@ const AdminEditProduct = ({ selectedProduct }) => {
       formData.append("description", editedProduct.description);
       formData.append("price", editedProduct.price);
 
-      
+
       const productId = selectedProduct.id
 
       await axios.put(
@@ -51,10 +53,16 @@ const AdminEditProduct = ({ selectedProduct }) => {
       });
       navigate(0)
     } catch (error) {
-      console.error(
-        "Error Editing product:",
-        error.response ? error.response.data : error.message
-      );
+
+      if (error.response.status === 401) {
+        localStorage.clear()
+        navigate('/Login')
+      }
+      else if (error.response.status === 403) {
+        navigate('/HomePage')
+      }
+
+
     }
   };
 
@@ -140,7 +148,7 @@ const AdminEditProduct = ({ selectedProduct }) => {
           </div>
           <div className="form-group">
             <input type="submit" value='Edit Product' />
-            </div>
+          </div>
         </form>
       </div>
     </div>
