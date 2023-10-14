@@ -21,7 +21,7 @@ const App = () => {
   const [products, setProducts] = useState([])
   const [users, setUsers] = useState([])
   const [currentUser, setCurrentUser] = useState()
-  const [currentUserRole, setCurrentUserRole] = useState(localStorage.getItem("role"));
+  const [currentUserRole, setCurrentUserRole] = useState(localStorage.getItem("role") ?? '');
   const[selectedByUser,setSelectedByUser]=useState(null)
   const [filterData,setFilterData]=useState([])
   const [searchTerm,setSearchTerm]=useState('')
@@ -82,9 +82,15 @@ const App = () => {
 
   const _handleSearch=(val)=>setSearchTerm(val)
   useEffect(()=>{
+    if (searchTerm  && searchTerm !=='')
+    {
       const newData=products.filter(elem=>elem.name.toLowerCase().includes(searchTerm))
       setFilterData(newData)
-  },[products,searchTerm])
+    }
+    else{
+      setFilterData(products)
+    }
+  },[searchTerm])
 
 
 
@@ -110,14 +116,14 @@ const App = () => {
             element={<SignUp />}
           />
 
-          <Route path="/HomePage" element={<ProtectedRouteUser redirectPath="/" isAllowed={token && currentUserRole.includes("customer")} >
+          <Route path="/HomePage" element={<ProtectedRouteUser redirectPath="/" isAllowed={token &&currentUserRole&& currentUserRole.includes("customer")} >
          
             <HomePage items={filterData} handleSelct={handleSelct} addToCart={addToCart} currentUser={currentUser} onSearch={_handleSearch} />
           </ProtectedRouteUser>
           }>
           </Route>
 
-          <Route path="/Cart" element={<ProtectedRouteUser redirectPath="/" isAllowed={token && currentUserRole.includes("customer")} >
+          <Route path="/Cart" element={<ProtectedRouteUser redirectPath="/" isAllowed={token && currentUserRole && currentUserRole.includes("customer")} >
             <Cart getUserId={getUserId} />
           </ProtectedRouteUser>
           }>
@@ -125,7 +131,7 @@ const App = () => {
           </Route>
 
 
-          <Route path="AdminProductList" element={<ProtectedRouteAdmin redirectPath="/" isAllowed={token && currentUserRole.includes("admin")} >
+          <Route path="AdminProductList" element={<ProtectedRouteAdmin redirectPath="/" isAllowed={token &&currentUserRole&& currentUserRole.includes("admin")} >
 
             <AdminProductList />
           </ProtectedRouteAdmin>

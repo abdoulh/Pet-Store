@@ -113,7 +113,9 @@ const Navbar = ({handleSelect,onSearch}) => {
                       
                     />
 
-                    <button className="btn btn-lg btn-primary px-3 mx-3 d-lg-block" onClick={_handleSearch}>Search</button>
+                    <button className="btn btn-lg  px-3  d-lg-block btn-search" onClick={_handleSearch} >
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
                   </div>
             </div>
 
