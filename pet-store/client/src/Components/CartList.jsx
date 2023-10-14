@@ -43,7 +43,7 @@ const CartList = ({ item, fetchAllCartItems }) => {
             <span className="cartName" onClick={toggleModal} >Product Name: {item.name}</span>
             <span className="cartPrice" >Price: ${item.price}</span>
 
-            <button className="cart-list-button" onClick={() => { removeFromCart(user.userId, item.id) }}>Remove</button>
+            <button className="cart-list-button btn-dark" onClick={() => { removeFromCart(user.userId, item.id) }}>Remove</button>
             {
                 modal && (
                     <div className="modal-custom">

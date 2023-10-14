@@ -22,10 +22,10 @@ const App = () => {
   const [users, setUsers] = useState([])
   const [currentUser, setCurrentUser] = useState()
   const [currentUserRole, setCurrentUserRole] = useState(localStorage.getItem("role"));
-  const[selectedByUser,setSelectedByUser]=useState(null)
-  const [filterData,setFilterData]=useState([])
-  const [searchTerm,setSearchTerm]=useState('')
- 
+  const [selectedByUser, setSelectedByUser] = useState(null)
+  const [filterData, setFilterData] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
+
 
 
 
@@ -71,20 +71,20 @@ const App = () => {
     }
 
   }
-  const handleSelct=(val)=>setSelectedByUser(val)
-  useEffect(()=>{
-    if(selectedByUser){
-    const filteredList=products.filter(elem=>elem.animal===selectedByUser.animal&&elem.category===selectedByUser.category)
-    setFilterData(filteredList)
+  const handleSelct = (val) => setSelectedByUser(val)
+  useEffect(() => {
+    if (selectedByUser) {
+      const filteredList = products.filter(elem => elem.animal === selectedByUser.animal && elem.category === selectedByUser.category)
+      setFilterData(filteredList)
     }
 
-  },[selectedByUser])
+  }, [selectedByUser])
 
-  const _handleSearch=(val)=>setSearchTerm(val)
-  useEffect(()=>{
-      const newData=products.filter(elem=>elem.name.toLowerCase().includes(searchTerm))
-      setFilterData(newData)
-  },[products,searchTerm])
+  const _handleSearch = (val) => setSearchTerm(val)
+  useEffect(() => {
+    const newData = products.filter(elem => elem.name.toLowerCase().includes(searchTerm))
+    setFilterData(newData)
+  }, [products, searchTerm])
 
 
 
@@ -97,7 +97,7 @@ const App = () => {
         <Routes>
           <Route
             path="/"
-            element={<LandingPage setCurrentUser={setCurrentUser} items={filterData} handleSelct={handleSelct} addToCart={addToCart} currentUserID={currentUser}  onSearch={_handleSearch}/>}
+            element={<LandingPage setCurrentUser={setCurrentUser} items={filterData} handleSelct={handleSelct} addToCart={addToCart} currentUserID={currentUser} onSearch={_handleSearch} />}
           />
 
           <Route
@@ -111,7 +111,7 @@ const App = () => {
           />
 
           <Route path="/HomePage" element={<ProtectedRouteUser redirectPath="/" isAllowed={token && currentUserRole.includes("customer")} >
-         
+
             <HomePage items={filterData} handleSelct={handleSelct} addToCart={addToCart} currentUser={currentUser} onSearch={_handleSearch} />
           </ProtectedRouteUser>
           }>
@@ -146,7 +146,7 @@ const App = () => {
         </Routes>
       </Router>
     </UserContext.Provider>
-    
+
   );
 
 };
