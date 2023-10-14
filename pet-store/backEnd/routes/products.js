@@ -4,14 +4,19 @@ const multer = require('multer')
 
 const upload = multer()
 
+const isAdminAuthenticated = require('../middlewares/isAdminAuthenticated')
+const isUserAuthenticated = require('../middlewares/isUserAuthenticated')
 
-const { getAllProducts, createProduct, updateProduct, deleteProduct} = require('../controllers/products')
 
+const { getAllProducts, createProduct, updateProduct, deleteProduct } = require('../controllers/products')
+
+router.route('/product/admin')
+       .get(isAdminAuthenticated, getAllProducts)
+       .post(isAdminAuthenticated, upload.single('image'), createProduct)
 router.route('/product')
        .get(getAllProducts)
-       .post(upload.single('image'), createProduct)
 router.route('/product/:id')
-       .put(upload.single('imageUrl'), updateProduct)
-       .delete(deleteProduct)
+       .put(isAdminAuthenticated, upload.single('imageUrl'), updateProduct)
+       .delete(isAdminAuthenticated, deleteProduct)
 
 module.exports = router    
