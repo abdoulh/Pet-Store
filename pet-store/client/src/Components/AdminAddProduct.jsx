@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../index.css';
+import { useNavigate } from "react-router-dom";
 
 
 const AdminAddProduct = ({ onAddProduct }) => {
@@ -39,6 +40,8 @@ const AdminAddProduct = ({ onAddProduct }) => {
           'Content-Type': 'multipart/form-data',
         },
       });
+      navigate("/AdminProductList",window.location.reload());
+      
     } catch (error) {
       console.error(
         "Error adding product:",
@@ -46,10 +49,13 @@ const AdminAddProduct = ({ onAddProduct }) => {
       );
     }
   }
+  const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     addProduct(product)
+
+
 
   }
 
@@ -81,6 +87,7 @@ const AdminAddProduct = ({ onAddProduct }) => {
 
               onChange={handleInputChange}
             >
+              <option disabled selected value=''> Select product category </option>
               <option value="Food">Food</option>
               <option value="Toy">Toy</option>
               <option value="Upholstery">Upholstery</option>
@@ -93,6 +100,7 @@ const AdminAddProduct = ({ onAddProduct }) => {
 
                 onChange={handleInputChange}
               >
+                <option disabled selected value=''> Select animal</option>
                 <option value="dog">Dog</option>
                 <option value="cat">Cat</option>
               </select>
@@ -132,6 +140,7 @@ const AdminAddProduct = ({ onAddProduct }) => {
           </div>
           <div className="form-group">
             <input type="submit" value='Add product' />
+
           </div>
         </form>
       </div>

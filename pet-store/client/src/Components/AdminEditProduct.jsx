@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import '../index.css';
+import { useNavigate } from "react-router-dom";
 
-const AdminEditProduct = ({selectedProduct}) => {
+const AdminEditProduct = ({ selectedProduct }) => {
   const [editedProduct, setEditedProduct] = useState({
     name: selectedProduct.name,
     category: selectedProduct.category,
-    animal:selectedProduct.animal,
+    animal: selectedProduct.animal,
     imageUrl: selectedProduct.imageUrl,
     description: selectedProduct.description,
     price: selectedProduct.price,
@@ -24,6 +25,7 @@ const AdminEditProduct = ({selectedProduct}) => {
     setEditedProduct({ ...editedProduct, imageUrl: file })
 
   }
+  const navigate = useNavigate()
 
 
 
@@ -37,17 +39,17 @@ const AdminEditProduct = ({selectedProduct}) => {
       formData.append("description", editedProduct.description);
       formData.append("price", editedProduct.price);
 
-      // Replace 'productId' with the actual product ID you want to edit
+      
       const productId = selectedProduct.id
 
       await axios.put(
         `http://localhost:3000/api/product/${productId}`,
         formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      navigate(0)
     } catch (error) {
       console.error(
         "Error Editing product:",
@@ -60,7 +62,7 @@ const AdminEditProduct = ({selectedProduct}) => {
     event.preventDefault();
     await EditProduct();
   };
-  
+
 
   return (
     <div id="editProductModal" className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -75,7 +77,7 @@ const AdminEditProduct = ({selectedProduct}) => {
               name="name"
               placeholder={selectedProduct.name}
               onChange={handleInputChange}
-              
+
             />
           </div>
           <div className="form-group">
@@ -86,6 +88,7 @@ const AdminEditProduct = ({selectedProduct}) => {
               placeholder={selectedProduct.category}
               onChange={handleInputChange}
             >
+              <option disabled selected value=''> Select product category </option>
               <option value="Food">Food</option>
               <option value="Toy">Toy</option>
               <option value="Upholstery">Upholstery</option>
@@ -99,6 +102,7 @@ const AdminEditProduct = ({selectedProduct}) => {
               placeholder={selectedProduct.animal}
               onChange={handleInputChange}
             >
+              <option disabled selected value=''> Selected animal</option>
               <option value="dog">Dog</option>
               <option value="cat">Cat</option>
             </select>
@@ -120,7 +124,7 @@ const AdminEditProduct = ({selectedProduct}) => {
               name="description"
               placeholder={selectedProduct.description}
               onChange={handleInputChange}
-              
+
             />
           </div>
           <div className="form-group">
@@ -131,10 +135,12 @@ const AdminEditProduct = ({selectedProduct}) => {
               name="price"
               placeholder={selectedProduct.price}
               onChange={handleInputChange}
-              
+
             />
           </div>
-          <button type="submit">Edit Product</button>
+          <div className="form-group">
+            <input type="submit" value='Edit Product' />
+            </div>
         </form>
       </div>
     </div>
