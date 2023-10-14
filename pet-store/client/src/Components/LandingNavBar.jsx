@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const LandingNavbar = ({handleSelect,onSearch}) => {
+const LandingNavbar = ({ handleSelect, onSearch }) => {
   const [catsDropdownOpen, setCatsDropdownOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const toggleCatsDropdown = () => {
@@ -19,8 +19,7 @@ const LandingNavbar = ({handleSelect,onSearch}) => {
 
   const navigate = useNavigate()
 
-  const _handleSearch=()=>
-  {
+  const _handleSearch = () => {
     onSearch(searchTerm)
 
   }
@@ -28,7 +27,7 @@ const LandingNavbar = ({handleSelect,onSearch}) => {
 
   return (
     <div className="container-fluid p-0">
-      <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5 ">
+      <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-0  ">
         <a href="" className="navbar-brand d-block d-lg-none">
         </a>
         <button
@@ -58,15 +57,15 @@ const LandingNavbar = ({handleSelect,onSearch}) => {
               >
                 Cats
               </a>
-              <div className={`dropdown-menu rounded-0 m-0 ${catsDropdownOpen ? "show" : ""
+              <div className={`dropdown-menu   bg-dark  rounded-0 m-0 ${catsDropdownOpen ? "show" : ""
                 }`}>
-                <a href="#" className="dropdown-item" onClick={()=>{handleSelect({category:"Toy" ,animal:"Cat"})}}>
+                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Toy", animal: "Cat" }) }}>
                   Toys
                 </a>
-                <a href="#" className="dropdown-item" onClick={()=>{handleSelect({category:"Food" ,animal:"Cat"})}}>
+                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Food", animal: "Cat" }) }}>
                   Food
                 </a>
-                <a href="#" className="dropdown-item"onClick={()=>{handleSelect({category:"Upholstery" ,animal:"Cat"})}}>
+                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Upholstery", animal: "Cat" }) }}>
                   Upholstery
                 </a>
               </div>
@@ -81,35 +80,35 @@ const LandingNavbar = ({handleSelect,onSearch}) => {
                 Dogs
               </a>
 
-              <div className={`dropdown-menu rounded-0 m-0 ${dogsDropdownOpen ? "show" : ""
+              <div className={`dropdown-menu   bg-dark  rounded-0 m-0 ${dogsDropdownOpen ? "show" : ""
                 }`}>
-                <a href="#" className="dropdown-item"onClick={()=>{handleSelect({category:"Toy" ,animal:"Dog"})}}>
+                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Toy", animal: "Dog" }) }}>
                   Toys
                 </a>
-                <a href="#" className="dropdown-item" onClick={()=>{handleSelect({category:"Food" ,animal:"Dog"})}}>
+                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Food", animal: "Dog" }) }}>
                   Food
                 </a>
-                <a href="#" className="dropdown-item" onClick={()=>{handleSelect({category:"Upholstery" ,animal:"Dog"})}}>
+                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Upholstery", animal: "Dog" }) }}>
                   Upholstery
                 </a>
               </div>
             </div>
           </div>
-            
-          <div className="navbar-nav mr-auto py-0">
-             
-             <div className="navbar-nav mr-auto py-0">
-               <input
-                   type="text"
-                   placeholder="Search..."
-                   value={searchTerm}
-                   onChange={(e) => setSearchTerm(e.target.value)}
-                 
-               />
 
-               <button className="btn btn-lg btn-primary px-3 mx-3 d-lg-block" onClick={_handleSearch}>Search</button>
-             </div>
-       </div>
+          <div className="navbar-nav mr-auto py-0">
+
+            <div className="navbar-nav mr-auto py-0">
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+
+              />
+
+              <button className="btn btn-lg btn-primary px-3 mx-3 d-lg-block" onClick={_handleSearch}>Search</button>
+            </div>
+          </div>
 
 
           <button

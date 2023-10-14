@@ -41,8 +41,8 @@ module.exports={
         }
     },
     updateProduct: async (req, res) => {
-        try{
-            const {name, category, animal, imageUrl, description, price} = req.body
+        try {
+            const { name, category, animal, description, price } = req.body
             const productId = req.params.id;
             const imageBuffer = req.file.buffer;
             const imageStream = Readable.from(imageBuffer)
