@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "../styles/adminLists.css";
+import axios from '../services/axios-interceptor';
+import '../styles/adminLists.css';
 import AdminNav from "./AdminNav";
 import AdminEditProduct from "./AdminEditProduct";
 import AdminAddProduct from "./AdminAddProduct";
+import { useNavigate } from "react-router-dom";
 
 const ConfirmationModal = ({ isOpen, onCancel, onConfirm }) => {
     if (!isOpen) return null;
@@ -33,6 +34,8 @@ const AdminProductList = () => {
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
+    const navigate = useNavigate()
+
     const toggleAddProductModal = () => {
         setAddProductModal(!addProductModal);
     };
@@ -41,24 +44,36 @@ const AdminProductList = () => {
         setEditProductModal(!editProductModal);
         setSelectedProduct(productId);
     };
-
-    const toggleDeleteModal = (productId) => {
+  
+  const toggleDeleteModal = (productId) => {
         setShowConfirmationModal(!showConfirmationModal);
         setSelectedProduct(productId);
     };
 
-    useEffect(() => {
-        const fetchAllProducts = async () => {
-            try {
-                const response = await axios.get("http://localhost:3000/api/product");
-                setProducts(response.data);
-            } catch (error) {
-                console.log(error);
+    const fetchAllProducts = async () => {
+        try {
+            const response = await axios.get('http://localhost:3000/api/product/admin');
+            setProducts(response.data);
+        } catch (error) {
+            console.log(error.response.status);
+
+            if (error.response.status === 401) {
+                localStorage.clear()
+                navigate('/Login')
             }
-        };
+            else if (error.response.status === 403) {
+                navigate('/HomePage')
+            }
+        }
+    }
+  
+
+    useEffect(() => {
 
         fetchAllProducts();
     }, []);
+
+    
 
     const removeFromCart = (productId) => {
         toggleDeleteModal(productId);
@@ -72,7 +87,15 @@ const AdminProductList = () => {
                 setProducts(products.filter((product) => product.id !== productId));
                 console.log("Product deleted successfully");
             } catch (error) {
-                console.error("Error deleting product", error);
+               console.error('Error deleting product', error);
+
+            if (error.response.status === 401) {
+                localStorage.clear()
+                navigate('/Login')
+            }
+            else if (error.response.status === 403) {
+                navigate('/HomePage')
+            }
             }
         }
 
