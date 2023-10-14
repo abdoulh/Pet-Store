@@ -63,7 +63,7 @@ const SignUp = ({ login }) => {
     }
 
     setErrorMsgPassword('');
-    
+
     return true;
   };
 
@@ -125,7 +125,7 @@ const SignUp = ({ login }) => {
               onChange={handlePasswordChange}
             />
           </div>
-          
+
           <div>
             <button
               type="submit"
