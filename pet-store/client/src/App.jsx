@@ -47,6 +47,7 @@ const App = () => {
 
   useEffect(() => {
     fetchProducts();
+    getUserId()
   }, []);
 
   const getUserId = async () => {
