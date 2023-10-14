@@ -90,6 +90,9 @@ const Navbar = ({ handleSelect, onSearch }) => {
                 </a>
               </div>
             </div>
+            <a href="#contact" className="nav-item nav-link ">
+              Contact
+            </a>
 
           </div>
           <div className="navbar-nav mr-auto py-0">
