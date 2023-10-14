@@ -5,7 +5,7 @@ const multer = require('multer')
 const upload = multer()
 
 
-const { getAllProducts, createProduct, updateProduct, deleteProduct, getOneProduct } = require('../controllers/products')
+const { getAllProducts, createProduct, updateProduct, deleteProduct} = require('../controllers/products')
 
 router.route('/product')
        .get(getAllProducts)
