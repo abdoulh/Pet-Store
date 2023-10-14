@@ -27,6 +27,8 @@ const Login = ({ signup }) => {
 
       } else if (response.data.payload.role === "admin") {
         navigate("/AdminProductList")
+
+        return
       }
 
 

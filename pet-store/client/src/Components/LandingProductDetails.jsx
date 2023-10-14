@@ -13,8 +13,8 @@ const LandingProductDetails = ({ selectedProduct }) => {
             <h3 className="flaticon-house display-3 font-weight-normal text-secondary mb-3">
                 <img src={selectedProduct.imageUrl} alt="" /></h3>
             <h3 className="mb-3">{selectedProduct.name}</h3>
-            <p>{selectedProduct.description.substring(0, 93)}...</p>
-            <p>${selectedProduct.price}</p>
+            <p>{selectedProduct.description}</p>
+            <p className='price'>${selectedProduct.price}</p>
 
             <a className="text-uppercase font-weight-bold" onClick={() => { navigate('Login') }}>Add to cart</a>
         </div>
