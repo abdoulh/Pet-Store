@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import '../index.css';
+import { useNavigate } from "react-router-dom";
 
 const AdminEditProduct = ({ selectedProduct }) => {
   const [editedProduct, setEditedProduct] = useState({
@@ -24,6 +25,7 @@ const AdminEditProduct = ({ selectedProduct }) => {
     setEditedProduct({ ...editedProduct, imageUrl: file })
 
   }
+  const navigate = useNavigate()
 
 
 
@@ -37,7 +39,7 @@ const AdminEditProduct = ({ selectedProduct }) => {
       formData.append("description", editedProduct.description);
       formData.append("price", editedProduct.price);
 
-      // Replace 'productId' with the actual product ID you want to edit
+      
       const productId = selectedProduct.id
 
       await axios.put(
@@ -46,8 +48,8 @@ const AdminEditProduct = ({ selectedProduct }) => {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      }
-      );
+      });
+      navigate(0)
     } catch (error) {
       console.error(
         "Error Editing product:",
@@ -100,7 +102,7 @@ const AdminEditProduct = ({ selectedProduct }) => {
               placeholder={selectedProduct.animal}
               onChange={handleInputChange}
             >
-              <option disabled selected value=''> Select animal</option>
+              <option disabled selected value=''> Selected animal</option>
               <option value="dog">Dog</option>
               <option value="cat">Cat</option>
             </select>
@@ -136,7 +138,9 @@ const AdminEditProduct = ({ selectedProduct }) => {
 
             />
           </div>
-          <button type="submit">Edit Product</button>
+          <div className="form-group">
+            <input type="submit" value='Edit Product' />
+            </div>
         </form>
       </div>
     </div>
