@@ -61,7 +61,7 @@ const App = () => {
       console.log(error)
       if (error.response.status === 401) {
         localStorage.clear()
-        navigate('/Login')
+        navigate('/')
       }
       console.log(error.response.status);
     }
