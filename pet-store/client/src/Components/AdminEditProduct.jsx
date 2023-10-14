@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from '../services/axios-interceptor';
 import '../index.css';
+import { useNavigate } from "react-router-dom";
 
 const AdminEditProduct = ({ selectedProduct }) => {
+
+  const navigate = useNavigate()
+
   const [editedProduct, setEditedProduct] = useState({
     name: selectedProduct.name,
     category: selectedProduct.category,
@@ -49,10 +53,16 @@ const AdminEditProduct = ({ selectedProduct }) => {
       }
       );
     } catch (error) {
-      console.error(
-        "Error Editing product:",
-        error.response ? error.response.data : error.message
-      );
+
+      if (error.response.status === 401) {
+        localStorage.clear()
+        navigate('/Login')
+      }
+      else if (error.response.status === 403) {
+        navigate('/HomePage')
+      }
+
+
     }
   };
 

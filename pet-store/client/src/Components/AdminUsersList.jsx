@@ -1,41 +1,65 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from '../services/axios-interceptor'
 import AdminNav from "./AdminNav";
 import '../styles/adminLists.css'
+import { useNavigate } from "react-router-dom";
 
 
 
 const AdminUsersList = () => {
     const [users, setUsers] = useState([]);
 
-    useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                const response = await axios.get('http://localhost:3000/api/users');
-                console.log(response.data);
-                setUsers(response.data);
-            }catch (error) {
-                console.error('Error fetching Users:', error);
+    const navigate = useNavigate()
+
+
+    const fetchUsers = async () => {
+
+        try {
+            const response = await axios.get('/api/users');
+            setUsers(response.data);
+        } catch (error) {
+            console.error('Error fetching Users:', error);
+
+            if (error.response.status === 401) {
+                localStorage.clear()
+                navigate('/Login')
             }
-        };
+            else if (error.response.status === 403) {
+                navigate('/HomePage')
+            }
+
+        }
+    };
+
+    useEffect(() => {
 
         fetchUsers();
+
     }, []);
 
     const handleDeleteUser = async (userId) => {
         try {
-            await axios.delete(`http://localhost:3000/api/users/${userId}`);
+            await axios.delete(`/api/users/${userId}`);
             setUsers(users.filter(user => user.id !== userId));
             console.log('User deleted successfully.');
         } catch (error) {
             console.error('Error deleting user:', error);
+
+            if (error.response.status === 401) {
+                localStorage.clear()
+                navigate('/Login')
+            }
+            else if (error.response.status === 403) {
+                navigate('/HomePage')
+            }
+
         }
     };
 
     return (
         <div className="admin-dashboard">
             <AdminNav />
-           
+
             <div className="admin-content">
                 <table className="admin-product-table">
                     <thead>
