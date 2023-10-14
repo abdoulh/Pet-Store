@@ -4,10 +4,10 @@ import AdminNav from "./AdminNav";
 import '../styles/adminLists.css'
 import { useNavigate } from "react-router-dom";
 
-
-
 const AdminUsersList = () => {
     const [users, setUsers] = useState([]);
+    const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
 
     const navigate = useNavigate()
 
@@ -37,23 +37,31 @@ const AdminUsersList = () => {
 
     }, []);
 
-    const handleDeleteUser = async (userId) => {
-        try {
-            await axios.delete(`/api/users/${userId}`);
-            setUsers(users.filter(user => user.id !== userId));
-            console.log('User deleted successfully.');
-        } catch (error) {
-            console.error('Error deleting user:', error);
+    const handleDeleteUser = (userId) => {
+        setSelectedUser(userId);
+        setShowConfirmationModal(true);
+    };
 
-            if (error.response.status === 401) {
-                localStorage.clear()
-                navigate('/Login')
+    const handleConfirmationConfirm = async () => {
+        if (selectedUser) {
+            try {
+                await axios.delete(`http://localhost:3000/api/users/${selectedUser}`);
+                setUsers(users.filter((user) => user.id !== selectedUser));
+                console.log("User deleted successfully.");
+            } catch (error) {
+                console.error("Error deleting user:", error);
+                if (error.response.status === 401) {
+                    localStorage.clear()
+                    navigate('/Login')
+                }
+                else if (error.response.status === 403) {
+                    navigate('/HomePage')
+                }
             }
-            else if (error.response.status === 403) {
-                navigate('/HomePage')
-            }
-
         }
+
+        setShowConfirmationModal(false);
+        setSelectedUser(null);
     };
 
     return (
@@ -77,15 +85,36 @@ const AdminUsersList = () => {
                                 <td>{user.lastName}</td>
                                 <td>{user.email}</td>
                                 <td>
-                                    <button className="admin-product-delete-button" onClick={() => handleDeleteUser(user.id)}>Delete</button>
+                                    <button
+                                        className="admin-delete-button"
+                                        onClick={() => handleDeleteUser(user.id)}
+                                    >
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+                {showConfirmationModal && selectedUser && (
+                    <div className="modal-custom">
+                        <div className="overlay" onClick={() => setShowConfirmationModal(false)}></div>
+                        <div className="modal-content-custom-cart">
+                            <div id="ConfirmationModal" className="confirmation-modal">
+                                <div className="confirmation-message">
+                                    Are you sure you want to delete this user?
+                                </div>
+                                <div className="confirmation-buttons">
+                                    <button onClick={handleConfirmationConfirm}>Yes</button>
+                                    <button onClick={() => setShowConfirmationModal(false)}>No</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
-}
+};
 
 export default AdminUsersList;
