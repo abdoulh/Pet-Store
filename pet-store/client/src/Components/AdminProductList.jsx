@@ -27,6 +27,7 @@ const ConfirmationModal = ({ isOpen, onCancel, onConfirm }) => {
     );
 };
 
+
 const AdminProductList = () => {
     const [products, setProducts] = useState([]);
     const [addProductModal, setAddProductModal] = useState(false);
@@ -34,7 +35,9 @@ const AdminProductList = () => {
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
+
     const navigate = useNavigate()
+
 
     const toggleAddProductModal = () => {
         setAddProductModal(!addProductModal);
@@ -44,11 +47,12 @@ const AdminProductList = () => {
         setEditProductModal(!editProductModal);
         setSelectedProduct(productId);
     };
-  
-  const toggleDeleteModal = (productId) => {
+
+    const toggleDeleteModal = (productId) => {
         setShowConfirmationModal(!showConfirmationModal);
         setSelectedProduct(productId);
     };
+
 
     const fetchAllProducts = async () => {
         try {
@@ -63,17 +67,16 @@ const AdminProductList = () => {
             }
             else if (error.response.status === 403) {
                 navigate('/HomePage')
+
             }
         }
     }
-  
+
 
     useEffect(() => {
 
         fetchAllProducts();
     }, []);
-
-    
 
     const removeFromCart = (productId) => {
         toggleDeleteModal(productId);
@@ -87,15 +90,16 @@ const AdminProductList = () => {
                 setProducts(products.filter((product) => product.id !== productId));
                 console.log("Product deleted successfully");
             } catch (error) {
-               console.error('Error deleting product', error);
 
-            if (error.response.status === 401) {
-                localStorage.clear()
-                navigate('/Login')
-            }
-            else if (error.response.status === 403) {
-                navigate('/HomePage')
-            }
+                console.error('Error deleting product', error);
+
+                if (error.response.status === 401) {
+                    localStorage.clear()
+                    navigate('/Login')
+                }
+                else if (error.response.status === 403) {
+                    navigate('/HomePage')
+                }
             }
         }
 
@@ -166,8 +170,7 @@ const AdminProductList = () => {
                                         <button
                                             className="admin-product-edit-button"
                                             onClick={() => {
-                                                toggleEditProductModal(product.id);
-                                                setSelectedProduct(product.id);
+                                                toggleEditProductModal(product);
                                             }}
                                         >
                                             Edit
