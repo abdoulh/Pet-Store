@@ -122,7 +122,7 @@ const SignUp = ({ login }) => {
                   navigate("/Login");
                 }}
               >
-                Already have an account? Log In
+                Already have an account? Log in
               </a>
             </div>
           </div>
