@@ -143,8 +143,8 @@ const AdminProductList = () => {
                                         <button
                                             className="admin-product-edit-button"
                                             onClick={() => {
-                                                toggleEditProductModal(product);
-                                                ;
+                                                toggleEditProductModal(product);                                             
+
                                             }}
                                         >
                                             Edit
