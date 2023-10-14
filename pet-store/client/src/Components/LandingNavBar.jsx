@@ -3,12 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 
 
-
-const Navbar = ({ handleSelect, onSearch }) => {
+const LandingNavbar = ({ handleSelect, onSearch }) => {
   const [catsDropdownOpen, setCatsDropdownOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-
-
   const toggleCatsDropdown = () => {
     setCatsDropdownOpen(!catsDropdownOpen);
     setDogsDropdownOpen(false);
@@ -20,29 +17,36 @@ const Navbar = ({ handleSelect, onSearch }) => {
     setCatsDropdownOpen(false)
   };
 
-
-
-
   const navigate = useNavigate()
+
   const _handleSearch = () => {
     onSearch(searchTerm)
 
   }
 
 
-
   return (
     <div className="container-fluid p-0">
-      <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-0 ">
-
+      <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-0  ">
+        <a href="" className="navbar-brand d-block d-lg-none">
+        </a>
+        <button
+          type="button"
+          className="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
         <div
           className="collapse navbar-collapse justify-content-between px-3"
           id="navbarCollapse"
         >
           <div className="navbar-nav mr-auto py-0">
-            <a href="HomePage" className="nav-item nav-link active">
+            <a href="/" className="nav-item nav-link active">
               Home
             </a>
+
 
             <div className="nav-item dropdown">
               <a
@@ -53,9 +57,8 @@ const Navbar = ({ handleSelect, onSearch }) => {
               >
                 Cats
               </a>
-              <div className={`dropdown-menu  bg-dark  rounded-0 m-0 ${catsDropdownOpen ? "show" : ""
-                }`}
-              >
+              <div className={`dropdown-menu   bg-dark  rounded-0 m-0 ${catsDropdownOpen ? "show" : ""
+                }`}>
                 <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Toy", animal: "Cat" }) }}>
                   Toys
                 </a>
@@ -77,7 +80,7 @@ const Navbar = ({ handleSelect, onSearch }) => {
                 Dogs
               </a>
 
-              <div className={`dropdown-menu bg-dark rounded-0 m-0 ${dogsDropdownOpen ? "show" : ""
+              <div className={`dropdown-menu   bg-dark  rounded-0 m-0 ${dogsDropdownOpen ? "show" : ""
                 }`}>
                 <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Toy", animal: "Dog" }) }}>
                   Toys
@@ -90,8 +93,8 @@ const Navbar = ({ handleSelect, onSearch }) => {
                 </a>
               </div>
             </div>
-
           </div>
+
           <div className="navbar-nav mr-auto py-0">
 
             <div className="navbar-nav mr-auto py-0">
@@ -109,16 +112,17 @@ const Navbar = ({ handleSelect, onSearch }) => {
 
 
           <button
-            className="cartButton  px-5 mx-3"
-            onClick={() => { navigate("/Cart") }}
+            className="btn btn-lg btn-primary px-3 d-none d-lg-block"
+            onClick={() => { navigate("/Login") }}
           >
-
+            Log in
           </button>
+
           <button
-            className="logout btn btn-lg btn-primary px-3 mx-3 d-lg-block"
-            onClick={() => { localStorage.clear(); navigate('/') }}
+            className="btn btn-lg btn-primary px-3 mx-3 d-none d-lg-block"
+            onClick={() => { navigate("/SignUp") }}
           >
-            Log out
+            Register
           </button>
 
 
@@ -128,4 +132,4 @@ const Navbar = ({ handleSelect, onSearch }) => {
   );
 };
 
-export default Navbar;
+export default LandingNavbar;

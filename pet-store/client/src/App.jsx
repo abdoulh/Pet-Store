@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./Components/LandingPage.jsx";
 import HomePage from "./Components/HomePage.jsx";
 import Cart from "./Components/Cart.jsx";
+import Login from "./Components/Login.jsx";
+import SignUp from "./Components/SignUp.jsx";
 import AdminAddProduct from "./Components/AdminAddProduct.jsx";
 import AdminProductList from "./Components/AdminProductList.jsx";
 import AdminUsersList from "./Components/AdminUsersList.jsx";
@@ -18,8 +20,11 @@ export const UserContext = createContext();
 const App = () => {
   const [products, setProducts] = useState([])
   const [users, setUsers] = useState([])
-  const [currentUserID, setCurrentUserID] = useState()
+  const [currentUser, setCurrentUser] = useState()
   const [currentUserRole, setCurrentUserRole] = useState(localStorage.getItem("role"));
+  const [selectedByUser, setSelectedByUser] = useState(null)
+  const [filterData, setFilterData] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
 
 
 
@@ -29,6 +34,7 @@ const App = () => {
       const { data } = await axios.get("http://localhost:3000/api/product")
       setProducts(data)
       getUserId()
+      setFilterData(data)
       console.log(data)
     } catch (error) {
       console.log(error);
@@ -46,7 +52,7 @@ const App = () => {
         localStorage.getItem("token")
       );
       console.log(data.payload.userId);
-      setCurrentUserID(data.payload.userId)
+      setCurrentUser(data.payload)
     } catch (error) {
       console.log(error);
     }
@@ -57,59 +63,92 @@ const App = () => {
     try {
       const { data } = axios.post(
         "http://localhost:3000/api/carts/" + userID + "/" + productID
+
       );
+      console.log(data)
     } catch (error) {
       console.log(error);
     }
-  };
+
+  }
+  const handleSelct = (val) => setSelectedByUser(val)
+  useEffect(() => {
+    if (selectedByUser) {
+      const filteredList = products.filter(elem => elem.animal === selectedByUser.animal && elem.category === selectedByUser.category)
+      setFilterData(filteredList)
+    }
+
+  }, [selectedByUser])
+
+  const _handleSearch = (val) => setSearchTerm(val)
+  useEffect(() => {
+    const newData = products.filter(elem => elem.name.toLowerCase().includes(searchTerm))
+    setFilterData(newData)
+  }, [products, searchTerm])
+
+
+
+// console.log(currentUserRole);
 
   return (
 
-<UserContext.Provider value={currentUserID}>
-    <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={<LandingPage setCurrentUser={setCurrentUserID} />}
-        />
+    <UserContext.Provider value={currentUser}>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={<LandingPage setCurrentUser={setCurrentUser} items={filterData} handleSelct={handleSelct} addToCart={addToCart} currentUserID={currentUser} onSearch={_handleSearch} />}
+          />
 
-        <Route path="/HomePage" element={<ProtectedRouteUser redirectPath="/"  isAllowed={ token && currentUserRole.includes("customer")} >
-         
-          <HomePage items={products}   addToCart={addToCart}  currentUserID={currentUserID} />
-    </ProtectedRouteUser>
-  }>
-        </Route>
+          <Route
+            path="/Login"
+            element={<Login setCurrentUserRole = {setCurrentUserRole}/>}
+          />
 
-        <Route path="/Cart" element={<ProtectedRouteUser redirectPath="/"  isAllowed={ token && currentUserRole.includes("customer")} >
-        <Cart getUserId={getUserId} />
-        </ProtectedRouteUser>
-      }>
+          <Route
+            path="/SignUp"
+            element={<SignUp />}
+          />
 
-       </Route>
+          <Route path="/HomePage" element={<ProtectedRouteUser redirectPath="/" isAllowed={token && currentUserRole.includes("customer")} >
 
-        
-        <Route path ="AdminProductList" element={<ProtectedRouteAdmin redirectPath="/"  isAllowed={ token && currentUserRole.includes("admin")} >
-          
-        <AdminProductList />
-            </ProtectedRouteAdmin>
+            <HomePage items={filterData} handleSelct={handleSelct} addToCart={addToCart} currentUser={currentUser} onSearch={_handleSearch} />
+          </ProtectedRouteUser>
           }>
-      
-        </Route>
-        <Route path="AdminUsersList" element={<ProtectedRouteAdmin redirectPath="/"  isAllowed={ token && currentUserRole.includes("admin")} >
-          <AdminUsersList />
-            </ProtectedRouteAdmin>
-          }>
-    </Route>
-    <Route path="AdminAddProduct" element={<ProtectedRouteAdmin redirectPath="/"  isAllowed={ token && currentUserRole.includes("admin")} >
-          <AdminAddProduct />
-            </ProtectedRouteAdmin>
-          }>
-    </Route>
+          </Route>
 
-      </Routes>
-    </Router>
+          <Route path="/Cart" element={<ProtectedRouteUser redirectPath="/" isAllowed={token && currentUserRole.includes("customer")} >
+            <Cart getUserId={getUserId} />
+          </ProtectedRouteUser>
+          }>
+
+          </Route>
+
+
+          <Route path="AdminProductList" element={<ProtectedRouteAdmin redirectPath="/" isAllowed={token && currentUserRole.includes("admin")} >
+
+            <AdminProductList />
+          </ProtectedRouteAdmin>
+          }>
+
+          </Route>
+          <Route path="AdminUsersList" element={<ProtectedRouteAdmin redirectPath="/" isAllowed={token && currentUserRole.includes("admin")} >
+            <AdminUsersList />
+          </ProtectedRouteAdmin>
+          }>
+          </Route>
+          <Route path="AdminAddProduct" element={<ProtectedRouteAdmin redirectPath="/" isAllowed={token && currentUserRole.includes("admin")} >
+            <AdminAddProduct />
+          </ProtectedRouteAdmin>
+          }>
+          </Route>
+
+        </Routes>
+      </Router>
     </UserContext.Provider>
+
   );
+
 };
 
 export default App;
