@@ -27,26 +27,6 @@ const ConfirmationModal = ({ isOpen, onCancel, onConfirm }) => {
     );
 };
 
-const ConfirmationModal = ({ isOpen, onCancel, onConfirm }) => {
-    if (!isOpen) return null;
-
-    return (
-        <div
-            id="ConfirmationModal"
-            className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
-        >
-            <div className="modal-box">
-                <div className="confirmation-message">
-                    Are you sure you want to delete this product?
-                </div>
-                <div className="confirmation-buttons">
-                    <button onClick={onConfirm}>Yes</button>
-                    <button onClick={onCancel}>No</button>
-                </div>
-            </div>
-        </div>
-    );
-};
 
 const AdminProductList = () => {
     const [products, setProducts] = useState([]);
@@ -67,8 +47,8 @@ const AdminProductList = () => {
         setEditProductModal(!editProductModal);
         setSelectedProduct(productId);
     };
-  
-  const toggleDeleteModal = (productId) => {
+
+    const toggleDeleteModal = (productId) => {
         setShowConfirmationModal(!showConfirmationModal);
         setSelectedProduct(productId);
     };
@@ -91,7 +71,7 @@ const AdminProductList = () => {
             }
         }
     }
-  
+
 
     useEffect(() => {
 
@@ -111,15 +91,15 @@ const AdminProductList = () => {
                 console.log("Product deleted successfully");
             } catch (error) {
 
-               console.error('Error deleting product', error);
+                console.error('Error deleting product', error);
 
-            if (error.response.status === 401) {
-                localStorage.clear()
-                navigate('/Login')
-            }
-            else if (error.response.status === 403) {
-                navigate('/HomePage')
-            }
+                if (error.response.status === 401) {
+                    localStorage.clear()
+                    navigate('/Login')
+                }
+                else if (error.response.status === 403) {
+                    navigate('/HomePage')
+                }
             }
         }
 
@@ -190,7 +170,7 @@ const AdminProductList = () => {
                                         <button
                                             className="admin-product-edit-button"
                                             onClick={() => {
-                                                toggleEditProductModal(product);                                       
+                                                toggleEditProductModal(product);
                                             }}
                                         >
                                             Edit

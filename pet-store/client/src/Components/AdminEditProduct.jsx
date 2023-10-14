@@ -28,7 +28,6 @@ const AdminEditProduct = ({ selectedProduct }) => {
     setEditedProduct({ ...editedProduct, imageUrl: file })
 
   }
-  const navigate = useNavigate()
 
 
 
@@ -42,7 +41,7 @@ const AdminEditProduct = ({ selectedProduct }) => {
       formData.append("description", editedProduct.description);
       formData.append("price", editedProduct.price);
 
-      
+
       const productId = selectedProduct.id
 
       await axios.put(
@@ -149,7 +148,7 @@ const AdminEditProduct = ({ selectedProduct }) => {
           </div>
           <div className="form-group">
             <input type="submit" value='Edit Product' />
-            </div>
+          </div>
         </form>
       </div>
     </div>
