@@ -79,6 +79,8 @@ const App = () => {
     } catch (error) {
       if (error.response.status === 401) {
         localStorage.clear()
+        navigate('/Login')
+
       }
       console.log(error.message);
     }
