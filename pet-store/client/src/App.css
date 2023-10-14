@@ -5042,7 +5042,7 @@
 
     max-width: 15vh;
     height: 5vh;
-    margin-left: 16vh;
+    margin-left: 24vh;
     margin-top: 3vh;
     border-radius: 5px
   }
@@ -11112,6 +11112,11 @@
 
   }
 
+  .link:hover {
+    cursor: pointer;
+
+  }
+
   .testimonial-carousel .owl-dot.active {
     background: #ED6436;
   }
@@ -11251,6 +11256,8 @@
     position: absolute;
     top: 35%;
     left: 5%;
+    border-radius: 8px;
+
 
 
   }
@@ -11280,7 +11287,7 @@
   .logo2 {
     position: absolute;
     top: 8%;
-    left: 32%;
+    left: 28.9%;
     font-weight: bold;
     font-size: 100px;
   }
@@ -11295,6 +11302,8 @@
     position: absolute;
     top: 35%;
     left: 5%;
+    border-radius: 8px;
+
 
   }
 

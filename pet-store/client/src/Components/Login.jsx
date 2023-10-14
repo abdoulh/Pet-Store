@@ -75,14 +75,14 @@ const Login = ({ signup }) => {
               className="btn btn-dark btn-block border-0 py-3"
               onClick={(e) => { handleLogin(e) }}
             >
-              Log In
+              Log in
             </button>
           </div>
           <div>
             <a
               className="link" onClick={() => { navigate('/SignUp') }}
             >
-              You don't have an account? Sign UP
+              You don't have an account? Sign UP!
             </a>
           </div>
         </form>
