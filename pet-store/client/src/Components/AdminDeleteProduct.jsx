@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
+
 import '../index.css';
 
 
-const AdminAddProduct = ({ onAddProduct }) => {
+const AdminDeleteProduct = ({ onAddProduct }) => {
   
 
 
@@ -16,4 +16,4 @@ const AdminAddProduct = ({ onAddProduct }) => {
     </div>
   );
 };
-export default AdminAddProduct;
+export default AdminDeleteProduct;
