@@ -12,7 +12,7 @@ const ProductDetails = ({ selectedProduct, addToCart, currentUser }) => {
 
             <p>${selectedProduct.price}</p>
 
-            <a className="text-uppercase font-weight-bold" onClick={(e) => { e.preventDefault(); addToCart(currentUser.userId, selectedProduct.id) }}>Add to cart</a>
+            <a className="details text-uppercase font-weight-bold" onClick={(e) => { e.preventDefault(); addToCart(currentUser.userId, selectedProduct.id) }}>Add to cart</a>
         </div>
 
     )
