@@ -6,10 +6,10 @@ const Footer = () => {
         <div className="row pt-5">
           <div className="col-lg-4 col-md-12 mb-5">
             <h1 className="mb-3 display-5 text-capitalize text-white">
-              <span className="text-primary">Happy</span>Pet
+              <span className="text-primary">Happy</span> Pets
             </h1>
             <p className="m-0">
-            Happy Pet is your one-stop pet store for all your furry friend's needs. From premium food and cozy beds to playful toys and stylish accessories, we've got everything to keep your pets happy and healthy.
+              Happy Pets is your one-stop pet store for all your furry friend's needs. From premium food and cozy beds to playful toys and stylish accessories, we've got everything to keep your pets happy and healthy.
             </p>
           </div>
           <div className="col-lg-8 col-md-12">
@@ -126,12 +126,12 @@ const Footer = () => {
             <p className="m-0 text-white">
               ©{" "}
               <a className="text-white font-weight-bold" href="#">
-            HappyPet
+                HappyPets
               </a>
               . All Rights Reserved.
-             
-          
-             
+
+
+
             </p>
           </div>
           <div className="col-md-6 text-center text-md-right">
