@@ -11419,3 +11419,7 @@
     color: var(--dark);
     font-size: 15px;
   }
+
+  .details:hover {
+    cursor: pointer;
+  }
