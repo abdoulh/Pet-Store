@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import axios from '../services/axios-interceptor';
-import '../index.css';
+import '../styles/adminEdit.css'
 import { useNavigate } from "react-router-dom";
 
 const AdminEditProduct = ({ selectedProduct }) => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [editedProduct, setEditedProduct] = useState({
     name: selectedProduct.name,
@@ -25,11 +24,8 @@ const AdminEditProduct = ({ selectedProduct }) => {
 
   const handleImage = (e) => {
     const file = e.target.files[0]
-    setEditedProduct({ ...editedProduct, imageUrl: file })
-
+    setEditedProduct({ ...editedProduct, imageUrl: file });
   }
-
-
 
   const EditProduct = async () => {
     try {
@@ -41,28 +37,23 @@ const AdminEditProduct = ({ selectedProduct }) => {
       formData.append("description", editedProduct.description);
       formData.append("price", editedProduct.price);
 
-
-      const productId = selectedProduct.id
+      const productId = selectedProduct.id;
 
       await axios.put(
         `http://localhost:3000/api/product/${productId}`,
         formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      navigate(0)
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      navigate(0);
     } catch (error) {
-
       if (error.response.status === 401) {
-        localStorage.clear()
-        navigate('/Login')
+        localStorage.clear();
+        navigate('/Login');
+      } else if (error.response.status === 403) {
+        navigate('/HomePage');
       }
-      else if (error.response.status === 403) {
-        navigate('/HomePage')
-      }
-
-
     }
   };
 
@@ -71,8 +62,13 @@ const AdminEditProduct = ({ selectedProduct }) => {
     await EditProduct();
   };
 
-
   return (
+    <div id="editProductModal-admin" >
+      <div className="modal-box-admin">
+        <h2>Edit Product</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group-admin">
+            <label htmlFor="name-admin">Product Name:</label>
     <div id="editProductModal" className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
       <div className="modal-box">
         <form onSubmit={handleSubmit}>
@@ -80,18 +76,19 @@ const AdminEditProduct = ({ selectedProduct }) => {
             <label htmlFor="name" className="method">Product Name:</label>
             <input
               type="text"
-              id="name"
+              id="name-admin"
               name="name"
               className="form-control border-0 p-3 my-2"
               placeholder={selectedProduct.name}
               onChange={handleInputChange}
-
             />
           </div>
+          <div className="form-group-admin">
+            <label htmlFor="category-admin">Category:</label>
           <div className="form-group">
             <label htmlFor="category" className="method">Category:</label>
             <select
-              id="category"
+              id="category-admin"
               name="category"
               className="form-control"
               placeholder={selectedProduct.category}
@@ -103,10 +100,12 @@ const AdminEditProduct = ({ selectedProduct }) => {
               <option value="Upholstery">Upholstery</option>
             </select>
           </div>
+          <div className="form-group-admin">
+            <label htmlFor="animal-admin">Animal:</label>
           <div className="form-group">
             <label htmlFor="animal" className="method">Animal:</label>
             <select
-              id="animal"
+              id="animal-admin"
               name="animal"
               className="form-control"
               placeholder={selectedProduct.animal}
@@ -117,39 +116,48 @@ const AdminEditProduct = ({ selectedProduct }) => {
               <option value="cat">Cat</option>
             </select>
           </div>
+          <div className="form-group-admin">
+            <label htmlFor="imageUrl-admin">Image URL:</label>
+
           <div className="form-group">
             <label htmlFor="imageUrl" className="method">Image:</label>
             <input
-              id="imageUrl"
+              id="imageUrl-admin"
               name="imageUrl"
               type='file'
               placeholder={selectedProduct.imageUrl}
               onChange={handleImage}
             />
           </div>
+          <div className="form-group-admin">
+            <label htmlFor="description-admin">Description:</label>
+
           <div className="form-group">
             <label htmlFor="description" className="method">Description:</label>
             <textarea
-              id="description"
+              id="description-admin"
               name="description"
               className="form-control-description"
               placeholder={selectedProduct.description}
               onChange={handleInputChange}
-
             />
           </div>
+          <div className="form-group-admin">
+            <label htmlFor="price-admin">Price:</label>
           <div className="form-group">
             <label htmlFor="price" className="method">Price:</label>
             <input
               type="number"
-              id="price"
+              id="price-admin"
               name="price"
               className="form-control border-0 p-3 my-2"
               placeholder={'$' + selectedProduct.price}
               onChange={handleInputChange}
-
             />
           </div>
+          <div className="form-group-admin">
+            <input type="submit" value='Edit Product' />
+
           <div className="form-group">
             <input type="submit" value='Edit Product' className="admin-submit-product-button" />
           </div>
