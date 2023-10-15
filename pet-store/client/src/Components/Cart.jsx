@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import Navbar from "./Navbar.jsx";
-import axios from "axios";
+import axios from '../services/axios-interceptor';
 import CartList from "./CartList.jsx";
 import Checkout from "./Checkout.jsx";
 import { UserContext } from '../App.jsx'
@@ -28,6 +28,11 @@ const Cart = () => {
             setCart(data)
         } catch (error) {
             console.log(error)
+            if (error.response.status === 401) {
+                localStorage.clear()
+                navigate('/Login')
+            }
+            console.log(error.message);
         }
     }
 

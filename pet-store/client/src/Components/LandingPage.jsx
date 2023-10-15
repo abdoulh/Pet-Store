@@ -1,6 +1,7 @@
 import LandingNavbar from './LandingNavBar.jsx';
 import LandingProductList from './LandingProductList.jsx';
 import '../App.css'
+import Footer from './Footer.jsx';
 
 const LandingPage = (props) => {
 
@@ -21,6 +22,7 @@ const LandingPage = (props) => {
           ))}
         </div>
       </div>
+      <Footer/>
     </div>
 
   )

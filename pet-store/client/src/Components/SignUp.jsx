@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 const SignUp = ({ login }) => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
-
-  const navigate = useNavigate()
+  const [errorMsgEmail, setErrorMsgEmail] = useState("");
+  const [errorMsgPassword, setErrorMsgPassword] = useState("");
+  const navigate = useNavigate();
 
 
   const handleEmailChange = (e) => {
@@ -39,21 +39,42 @@ const SignUp = ({ login }) => {
           lastName,
         }
       );
-      navigate('/Login')
-      return response; // No need to access .data here
+      navigate('/Login');
+      return response;
     } catch (error) {
       console.log("Registration error:", error);
       throw error;
     }
   };
 
+  const validator = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+
+    if (!emailRegex.test(email)) {
+      setErrorMsgEmail('Invalid email format');
+      return false;
+    }
+    setErrorMsgEmail('')
+
+    if (!passwordRegex.test(password)) {
+      setErrorMsgPassword('Password should have minimum 8 characters, at least one letter and one number')
+      return false;
+    }
+
+    setErrorMsgPassword('');
+    
+    return true;
+  };
+
   const handleSignup = async () => {
-    try {
-      const response = await signup(firstName, lastName, email, password);
-      console.log(response);
-      // navigate("/Login");
-    } catch (err) {
-      console.error(err);
+    if (validator()) {
+      try {
+        const response = await signup(firstName, lastName, email, password);
+        console.log(response);
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
@@ -82,6 +103,7 @@ const SignUp = ({ login }) => {
               onChange={handleLastnameChange}
             />
           </div>
+          {errorMsgEmail && <div className="error-message">{errorMsgEmail}</div>}
           <div className="form-group">
             <input
               type="email"
@@ -92,6 +114,7 @@ const SignUp = ({ login }) => {
               onChange={handleEmailChange}
             />
           </div>
+          {errorMsgPassword && <div className="error-message">{errorMsgPassword}</div>}
           <div className="form-group">
             <input
               type="password"
@@ -102,6 +125,7 @@ const SignUp = ({ login }) => {
               onChange={handlePasswordChange}
             />
           </div>
+          
           <div>
             <button
               type="submit"
@@ -122,7 +146,7 @@ const SignUp = ({ login }) => {
                   navigate("/Login");
                 }}
               >
-                Already have an account? Log In
+                Already have an account? Log in
               </a>
             </div>
           </div>

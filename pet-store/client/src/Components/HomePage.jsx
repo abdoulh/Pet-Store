@@ -1,6 +1,7 @@
 import React from "react";
 import ProductList from "./ProductList.jsx";
 import Navbar from "./Navbar.jsx";
+import Footer from "./Footer.jsx"
 
 
 const HomePage = (props) => {
@@ -21,6 +22,8 @@ const HomePage = (props) => {
           ))}
         </div>
       </div>
+      <Footer/>
+      
     </div>
   );
 };

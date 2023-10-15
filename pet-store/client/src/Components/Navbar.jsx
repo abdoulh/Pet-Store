@@ -90,6 +90,9 @@ const Navbar = ({ handleSelect, onSearch }) => {
                 </a>
               </div>
             </div>
+            <a href="#contact" className="nav-item nav-link ">
+              Contact
+            </a>
 
           </div>
           <div className="navbar-nav mr-auto py-0">
@@ -102,8 +105,10 @@ const Navbar = ({ handleSelect, onSearch }) => {
                 onChange={(e) => setSearchTerm(e.target.value)}
 
               />
-
-              <button className="btn btn-lg btn-primary px-3 mx-3 d-lg-block" onClick={_handleSearch}>Search</button>
+              <button className="btn btn-lg  px-3  d-lg-block btn-search" onClick={_handleSearch} >
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+             
             </div>
           </div>
 
@@ -116,7 +121,7 @@ const Navbar = ({ handleSelect, onSearch }) => {
           </button>
           <button
             className="logout btn btn-lg btn-primary px-3 mx-3 d-lg-block"
-            onClick={() => { localStorage.clear(); navigate('/') }}
+            onClick={() => { localStorage.clear(); navigate('/Login') }}
           >
             Log out
           </button>
