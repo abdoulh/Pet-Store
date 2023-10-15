@@ -28,6 +28,7 @@ const AdminNav = () => {
                             Product List
                         </Link>
                         <Link to="/AdminUsersList" className="nav-item nav-link" id='adminLink'>Users List</Link>
+                        <Link to="/HomePage" className="nav-item nav-link" id='adminLink'>Customer Homepage</Link>
 
 
                     </div>

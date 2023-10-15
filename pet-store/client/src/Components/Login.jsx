@@ -45,7 +45,7 @@ const Login = ({ signup, setCurrentUserRole }) => {
 
 
     <div className="backGround">
-      <h1 className='logo1' >Happy </h1> <h1 className="logo2">Pets</h1>
+      <h1 className='logo1' onClick={() => { navigate('/') }}>Happy </h1> <h1 className="logo2">Pets</h1>
       <div className="loginBox">
         <form className="py-5">
           <div className="form-group">

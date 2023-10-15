@@ -117,6 +117,7 @@ const AdminAddProduct = ({ onAddProduct }) => {
             </div>
             <div className="form-group">
               <label htmlFor="imageUrl" className="method">Image:</label>
+
               <input
 
                 type="file"
