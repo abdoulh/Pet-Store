@@ -19,8 +19,8 @@ const ConfirmationModal = ({ isOpen, onCancel, onConfirm }) => {
                     Are you sure you want to delete this product?
                 </div>
                 <div className="confirmation-buttons">
-                    <button onClick={onConfirm}>Yes</button>
-                    <button onClick={onCancel}>No</button>
+                    <button className='confirmation-button' onClick={onConfirm}>Yes</button>
+                    <button className='confirmation-button' onClick={onCancel}>No</button>
                 </div>
             </div>
         </div>
@@ -112,13 +112,18 @@ const AdminProductList = () => {
                 <AdminNav />
                 <div className="add-product-button-container ">
                     <button onClick={toggleAddProductModal}>Add Product</button>
+
+                <div className="add-product-button-container">
+                    <button className='admin-add-product-button' onClick={toggleAddProductModal}>Add Product</button>
                 </div>
             </div>
 
             {addProductModal && (
                 <div className="modal-custom">
                     <div onClick={toggleAddProductModal} className="overlay"></div>
+ 
                     <div className="modal-content-custom-cart cardbackgroundcolor">
+                    <div className="modal-content-custom-admin">
                         <AdminAddProduct />
                     </div>
                 </div>
@@ -127,6 +132,7 @@ const AdminProductList = () => {
                 <div className="modal-custom">
                     <div onClick={toggleDeleteModal} className="overlay"></div>
                     <div className="modal-content-custom-cart ">
+                    <div className="modal-content-custom-admin">
                         <ConfirmationModal
                             isOpen={showConfirmationModal}
                             onCancel={() => setShowConfirmationModal(false)}
@@ -140,6 +146,7 @@ const AdminProductList = () => {
                 <div className="modal-custom">
                     <div onClick={toggleEditProductModal} className="overlay"></div>
                     <div className="modal-content-custom-cart cart">
+                    <div className="modal-content-custom-admin">
                         <AdminEditProduct selectedProduct={selectedProduct} />
                     </div>
                 </div>
@@ -148,7 +155,7 @@ const AdminProductList = () => {
             <div className="admin-content">
                 <table className="admin-product-table">
                     <thead>
-                        <tr>
+                        <tr className="table-titles">
                             <th>Product Name</th>
                             <th>Price</th>
                             <th>Category</th>
@@ -160,15 +167,16 @@ const AdminProductList = () => {
                     <tbody>
                         {products.map((product, index) => (
                             <tr key={index}>
-                                <td>{product.name}</td>
-                                <td>{product.price}</td>
-                                <td>{product.category}</td>
-                                <td>{product.animal}</td>
-                                <td>{product.description}</td>
+                                <td className="table-content">{product.name}</td>
+                                <td className="table-content">${product.price}</td>
+                                <td className="table-content">{product.category}</td>
+                                <td className="table-content">{product.animal}</td>
+                                <td className="table-content">{product.description}</td>
                                 <td >
                                     <div className="admin-buttons">
                                         <button
                                             className="admin-product-edit-button Btn"
+                                            className="admin-product-button"
                                             onClick={() => {
                                                 toggleEditProductModal(product);
                                             }}
@@ -179,6 +187,7 @@ const AdminProductList = () => {
                                         <button
                                             className="admin-product-delete-button btnedit"
 
+                                            className="admin-product-button"
                                             onClick={() => removeFromCart(product.id)}
                                         >
                                             <span class="icon-wrapper">
