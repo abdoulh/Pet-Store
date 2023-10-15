@@ -16,7 +16,7 @@ const LandingProductDetails = ({ selectedProduct }) => {
             <p>{selectedProduct.description}</p>
             <p className='price'>${selectedProduct.price}</p>
 
-            <a className="text-uppercase font-weight-bold" onClick={() => { navigate('Login') }}>Add to cart</a>
+            <a className="details text-uppercase font-weight-bold" onClick={() => { navigate('Login') }}>Add to cart</a>
         </div>
 
     )

@@ -56,13 +56,13 @@ const Navbar = ({ handleSelect, onSearch }) => {
               <div className={`dropdown-menu  bg-dark  rounded-0 m-0 ${catsDropdownOpen ? "show" : ""
                 }`}
               >
-                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Toy", animal: "Cat" }) }}>
+                <a href="#" className="dropdown-item" onClick={() => { navigate('/HomePage'); handleSelect({ category: "Toy", animal: "Cat" }) }}>
                   Toys
                 </a>
-                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Food", animal: "Cat" }) }}>
+                <a href="#" className="dropdown-item" onClick={() => { navigate('/HomePage'); handleSelect({ category: "Food", animal: "Cat" }) }}>
                   Food
                 </a>
-                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Upholstery", animal: "Cat" }) }}>
+                <a href="#" className="dropdown-item" onClick={() => { navigate('/HomePage'); handleSelect({ category: "Upholstery", animal: "Cat" }) }}>
                   Upholstery
                 </a>
               </div>
@@ -79,17 +79,20 @@ const Navbar = ({ handleSelect, onSearch }) => {
 
               <div className={`dropdown-menu bg-dark rounded-0 m-0 ${dogsDropdownOpen ? "show" : ""
                 }`}>
-                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Toy", animal: "Dog" }) }}>
+                <a href="#" className="dropdown-item" onClick={() => { navigate('/HomePage'); handleSelect({ category: "Toy", animal: "Dog" }) }}>
                   Toys
                 </a>
-                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Food", animal: "Dog" }) }}>
+                <a href="#" className="dropdown-item" onClick={() => { navigate('/HomePage'); handleSelect({ category: "Food", animal: "Dog" }) }}>
                   Food
                 </a>
-                <a href="#" className="dropdown-item" onClick={() => { handleSelect({ category: "Upholstery", animal: "Dog" }) }}>
+                <a href="#" className="dropdown-item" onClick={() => { navigate('/HomePage'); handleSelect({ category: "Upholstery", animal: "Dog" }) }}>
                   Upholstery
                 </a>
               </div>
             </div>
+            <a href="#contact" className="nav-item nav-link ">
+              Contact
+            </a>
 
           </div>
           <div className="navbar-nav mr-auto py-0">
@@ -98,12 +101,14 @@ const Navbar = ({ handleSelect, onSearch }) => {
               <input
                 type="text"
                 placeholder="Search..."
+                id="search"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
 
               />
+              <button id="searchBtn" onClick={_handleSearch} >
+              </button>
 
-              <button className="btn btn-lg btn-primary px-3 mx-3 d-lg-block" onClick={_handleSearch}>Search</button>
             </div>
           </div>
 

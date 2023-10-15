@@ -8,11 +8,11 @@ const ProductDetails = ({ selectedProduct, addToCart, currentUser }) => {
                 <img src={selectedProduct.imageUrl} alt="" /></h3>
             <h3 className="mb-3">{selectedProduct.name}</h3>
 
-            <p>{selectedProduct.description}</p>  
+            <p>{selectedProduct.description}</p>
 
             <p>${selectedProduct.price}</p>
 
-            <a className="text-uppercase font-weight-bold" href="" onClick={(e) => { e.preventDefault(); addToCart(currentUser.userId, selectedProduct.id) }}>Add to cart</a>
+            <a className="text-uppercase font-weight-bold" onClick={(e) => { e.preventDefault(); addToCart(currentUser.userId, selectedProduct.id) }}>Add to cart</a>
         </div>
 
     )
