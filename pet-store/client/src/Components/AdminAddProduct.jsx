@@ -73,27 +73,27 @@ const AdminAddProduct = ({ onAddProduct }) => {
   return (
     <div id="createProductModal" className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
       <div className="modal-box">
-        <h2>Add Product</h2>
-
-
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="name">Product Name:</label>
+            <label htmlFor="name" className="method">Product Name:</label>
             <input
               type="text"
               id="name"
               name="name"
+              placeholder="Product name..."
+              className="form-control border-0 p-3 my-2"
+
 
               onChange={handleInputChange}
               required
             />
           </div>
           <div className="form-group">
-            <label htmlFor="category">Category:</label>
+            <label htmlFor="category" className="method">Category:</label>
             <select
               id="category"
               name="category"
-
+              className="form-control"
               onChange={handleInputChange}
             >
               <option disabled selected value=''> Select product category </option>
@@ -102,10 +102,11 @@ const AdminAddProduct = ({ onAddProduct }) => {
               <option value="Upholstery">Upholstery</option>
             </select>
             <div className="form-group">
-              <label htmlFor="animal">Animal:</label>
+              <label htmlFor="animal" className="method">Animal:</label>
               <select
                 id="animal"
                 name="animal"
+                className="form-control"
 
                 onChange={handleInputChange}
               >
@@ -115,7 +116,7 @@ const AdminAddProduct = ({ onAddProduct }) => {
               </select>
             </div>
             <div className="form-group">
-              <label htmlFor="imageUrl">imageURl</label>
+              <label htmlFor="imageUrl" className="method">Image:</label>
               <input
 
                 type="file"
@@ -127,28 +128,33 @@ const AdminAddProduct = ({ onAddProduct }) => {
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="description">Description:</label>
+            <label htmlFor="description" className="method">Description:</label>
             <textarea
               id="description"
               name="description"
+              placeholder="Product description..."
+              className="form-control-description"
 
               onChange={handleInputChange}
               required
             />
           </div>
           <div className="form-group">
-            <label htmlFor="price">Price:</label>
+            <label htmlFor="price" className="method">Price:</label>
             <input
               type="number"
               id="price"
               name="price"
+              placeholder="Product price..."
+              className="form-control border-0 p-2  "
+
 
               onChange={handleInputChange}
               required
             />
           </div>
           <div className="form-group">
-            <input type="submit" value='Add product' />
+            <input type="submit" value='Add product' className="admin-submit-product-button" />
 
           </div>
         </form>

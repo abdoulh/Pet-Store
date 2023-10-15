@@ -76,7 +76,7 @@ const AdminUsersList = () => {
             <div className="admin-content">
                 <table className="admin-product-table">
                     <thead>
-                        <tr>
+                        <tr className="table-titles">
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
@@ -85,7 +85,7 @@ const AdminUsersList = () => {
                     </thead>
                     <tbody>
                         {customers.map((user, index) => (
-                            <tr key={index}>
+                            <tr className="table-content" key={index}>
                                 <td>{user.firstName}</td>
                                 <td>{user.lastName}</td>
                                 <td>{user.email}</td>
@@ -104,14 +104,14 @@ const AdminUsersList = () => {
                 {showConfirmationModal && selectedUser && (
                     <div className="modal-custom">
                         <div className="overlay" onClick={() => setShowConfirmationModal(false)}></div>
-                        <div className="modal-content-custom-cart">
+                        <div className="modal-content-custom-admin">
                             <div id="ConfirmationModal" className="confirmation-modal">
                                 <div className="confirmation-message">
                                     Are you sure you want to delete this user?
                                 </div>
                                 <div className="confirmation-buttons">
-                                    <button onClick={handleConfirmationConfirm}>Yes</button>
-                                    <button onClick={() => setShowConfirmationModal(false)}>No</button>
+                                    <button className='confirmation-button' onClick={handleConfirmationConfirm}>Yes</button>
+                                    <button className='confirmation-button' onClick={() => setShowConfirmationModal(false)}>No</button>
                                 </div>
                             </div>
                         </div>
