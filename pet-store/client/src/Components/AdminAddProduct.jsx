@@ -146,6 +146,8 @@ const AdminAddProduct = ({ onAddProduct }) => {
               type="number"
               id="price"
               name="price"
+              min="0"
+              step=".01"
               placeholder="Product price..."
               className="form-control border-0 p-2  "
 
