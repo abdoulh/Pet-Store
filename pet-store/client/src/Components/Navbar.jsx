@@ -101,14 +101,14 @@ const Navbar = ({ handleSelect, onSearch }) => {
               <input
                 type="text"
                 placeholder="Search..."
+                id="search"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
 
               />
-              <button className="btn btn-lg  px-3  d-lg-block btn-search" onClick={_handleSearch} >
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                    </button>
-             
+              <button id="searchBtn" onClick={_handleSearch} >
+              </button>
+
             </div>
           </div>
 
