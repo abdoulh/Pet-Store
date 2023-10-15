@@ -93,13 +93,20 @@ const App = () => {
       setFilterData(filteredList)
     }
 
-  }, [selectedByUser])
+  },[selectedByUser])
 
-  const _handleSearch = (val) => setSearchTerm(val)
-  useEffect(() => {
-    const newData = products.filter(elem => elem.name.toLowerCase().includes(searchTerm))
-    setFilterData(newData)
-  }, [products, searchTerm])
+  const _handleSearch=(val)=>setSearchTerm(val)
+  useEffect(()=>{
+    if (searchTerm && searchTerm !=='')
+    {
+      const newData=products.filter(elem=>elem.name.toLowerCase().includes(searchTerm))
+      setFilterData(newData)
+    }
+    else{
+      setFilterData(products)
+    }
+  },[searchTerm])
+
 
 
 

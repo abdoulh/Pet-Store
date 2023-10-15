@@ -90,6 +90,9 @@ const Navbar = ({ handleSelect, onSearch }) => {
                 </a>
               </div>
             </div>
+            <a href="#contact" className="nav-item nav-link ">
+              Contact
+            </a>
 
           </div>
           <div className="navbar-nav mr-auto py-0">
@@ -98,12 +101,14 @@ const Navbar = ({ handleSelect, onSearch }) => {
               <input
                 type="text"
                 placeholder="Search..."
+                id="search"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
 
               />
+              <button id="searchBtn" onClick={_handleSearch} >
+              </button>
 
-              <button className="btn btn-lg btn-primary px-3 mx-3 d-lg-block" onClick={_handleSearch}>Search</button>
             </div>
           </div>
 
