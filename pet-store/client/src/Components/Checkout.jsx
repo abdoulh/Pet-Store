@@ -100,6 +100,7 @@ const Checkout = ({ toggle, thanks }) => {
                         type="text"
                         className="form-control border-0 p-4"
                         placeholder="Your zip code"
+                        pattern="[0-9][0-9][0-9][0-9]"
                         required="required"
                         onChange={handlePayment} />
                 </div>
