@@ -93,9 +93,13 @@ const LandingNavbar = ({ handleSelect, onSearch }) => {
                 </a>
               </div>
             </div>
+            <a href="#contact" className="nav-item nav-link ">
+              Contact
+            </a>
           </div>
+          
 
-          <div className="navbar-nav mr-auto py-0">
+          
 
             <div className="navbar-nav mr-auto py-0">
               <input
@@ -105,10 +109,13 @@ const LandingNavbar = ({ handleSelect, onSearch }) => {
                 onChange={(e) => setSearchTerm(e.target.value)}
 
               />
+          
 
-              <button className="btn btn-lg btn-primary px-3 mx-3 d-lg-block" onClick={_handleSearch}>Search</button>
+              <button className="btn btn-lg px-3  d-lg-block btn-search" onClick={_handleSearch}>
+                <i className="fa fa-search"></i>
+              </button>
             </div>
-          </div>
+          
 
 
           <button
