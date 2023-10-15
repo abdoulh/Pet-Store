@@ -75,24 +75,25 @@ const AdminEditProduct = ({ selectedProduct }) => {
   return (
     <div id="editProductModal" className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
       <div className="modal-box">
-        <h2>Edit Product</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="name">Product Name:</label>
+            <label htmlFor="name" className="method">Product Name:</label>
             <input
               type="text"
               id="name"
               name="name"
+              className="form-control border-0 p-3 my-2"
               placeholder={selectedProduct.name}
               onChange={handleInputChange}
 
             />
           </div>
           <div className="form-group">
-            <label htmlFor="category">Category:</label>
+            <label htmlFor="category" className="method">Category:</label>
             <select
               id="category"
               name="category"
+              className="form-control"
               placeholder={selectedProduct.category}
               onChange={handleInputChange}
             >
@@ -103,10 +104,11 @@ const AdminEditProduct = ({ selectedProduct }) => {
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="animal">Animal:</label>
+            <label htmlFor="animal" className="method">Animal:</label>
             <select
               id="animal"
               name="animal"
+              className="form-control"
               placeholder={selectedProduct.animal}
               onChange={handleInputChange}
             >
@@ -116,7 +118,7 @@ const AdminEditProduct = ({ selectedProduct }) => {
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="imageUrl">Image URL:</label>
+            <label htmlFor="imageUrl" className="method">Image:</label>
             <input
               id="imageUrl"
               name="imageUrl"
@@ -126,28 +128,30 @@ const AdminEditProduct = ({ selectedProduct }) => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="description">Description:</label>
+            <label htmlFor="description" className="method">Description:</label>
             <textarea
               id="description"
               name="description"
+              className="form-control-description"
               placeholder={selectedProduct.description}
               onChange={handleInputChange}
 
             />
           </div>
           <div className="form-group">
-            <label htmlFor="price">Price:</label>
+            <label htmlFor="price" className="method">Price:</label>
             <input
               type="number"
               id="price"
               name="price"
-              placeholder={selectedProduct.price}
+              className="form-control border-0 p-3 my-2"
+              placeholder={'$' + selectedProduct.price}
               onChange={handleInputChange}
 
             />
           </div>
           <div className="form-group">
-            <input type="submit" value='Edit Product' />
+            <input type="submit" value='Edit Product' className="admin-submit-product-button" />
           </div>
         </form>
       </div>

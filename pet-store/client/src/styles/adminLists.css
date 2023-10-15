@@ -87,14 +87,6 @@
 
 }
 
-.add-product-button-container button {
-    background-color: #3498db;
-    /* Set the background color to a specific color (e.g., blue) */
-    color: #fff;
-    /* Set the text color to white */
-
-}
-
 .admin-buttons {
     display: flex;
     justify-content: space-between
