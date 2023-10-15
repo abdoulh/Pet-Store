@@ -144,6 +144,8 @@ const AdminEditProduct = ({ selectedProduct }) => {
               type="number"
               id="price"
               name="price"
+              min="0"
+              step=".01"
               className="form-control border-0 p-3 my-2"
               placeholder={'$' + selectedProduct.price}
               onChange={handleInputChange}
