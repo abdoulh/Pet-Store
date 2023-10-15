@@ -45,7 +45,9 @@ const Cart = () => {
 
 
     const toggleModal = () => {
-        setModal(!modal);
+        if (cart.length) {
+            setModal(!modal);
+        }
     };
 
     if (modal) {

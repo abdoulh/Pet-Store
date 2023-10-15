@@ -34,6 +34,116 @@
     width: 50%
   }
 
+  #adminNav {
+    background-color: #2c3e50;
+  }
+
+  #adminLink:hover {
+    background-color: #3498db;
+  }
+
+  #adminLogout {
+    background-color: #3498db;
+    border-color: #3498db;
+  }
+
+  .confirmation-message {
+    color: white;
+    font-weight: bold;
+    font-size: large;
+  }
+
+  .confirmation-button {
+    background-color: white;
+    max-width: 100px;
+    min-width: 90px;
+    border: none;
+    color: black;
+    padding: 5px 5px 5px;
+    margin-left: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 3px;
+
+  }
+
+  .admin-product-button {
+    background-color: #3498db;
+    max-width: 100px;
+    min-width: 90px;
+    border: none;
+    color: white;
+    padding: 5px 5px 5px;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 3px;
+
+  }
+
+  .admin-delete-button {
+    background-color: #3498db;
+    max-width: 100px;
+    min-width: 90px;
+    border: none;
+    color: white;
+    padding: 5px 5px 5px;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    margin-left: 40%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 3px;
+    justify-content: center;
+
+
+  }
+
+  .admin-submit-product-button {
+    background-color: #3498db;
+    max-width: 100px;
+    min-width: 90px;
+    border: none;
+    color: white;
+    padding: 10px 10px 10px 10px;
+    margin-top: 3%;
+    margin-left: 40%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 3px;
+    justify-content: center;
+
+
+  }
+
+  .admin-add-product-button {
+    background-color: #3498db;
+    max-width: 1000px;
+    min-width: 110px;
+    height: 40px;
+    border: none;
+    color: white;
+    padding: 5px 5px 5px;
+    margin-top: 3%;
+    margin-right: 8vh;
+    margin-bottom: 3%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 3px;
+
+  }
+
   body.active-modal {
     overflow-y: hidden;
   }
@@ -390,14 +500,7 @@
     height: auto;
   }
 
-  [type="search"] {
-    outline-offset: -2px;
-   
-  }
 
-  [type="search"]::-webkit-search-decoration {
-    -webkit-appearance: none;
-  }
 
   ::-webkit-file-upload-button {
     font: inherit;
@@ -1883,7 +1986,7 @@
   .table {
     width: 100%;
     margin-bottom: 1rem;
-    color: #777777;
+    color: black;
   }
 
   .table th,
@@ -1891,6 +1994,7 @@
     padding: 0.75rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
+
   }
 
   .table thead th {
@@ -1952,6 +2056,10 @@
 
   .table-hover .table-primary:hover {
     background-color: #f8c2b0;
+  }
+
+  .table-content {
+    color: black;
   }
 
   .table-hover .table-primary:hover>td,
@@ -2128,6 +2236,10 @@
     background-color: rgba(0, 0, 0, 0.075);
   }
 
+  .table-titles {
+    color: white;
+  }
+
   .table .thead-dark th {
     color: #fff;
     background-color: #343a40;
@@ -2232,6 +2344,21 @@
     width: 100%;
     height: calc(1.5em + 0.75rem + 2px);
     padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .form-control-description {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 100px);
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
@@ -2367,16 +2494,12 @@
   }
 
 
-
-
 .flexx{
   display: flex;
   margin: auto;
 }
 
-
-
-  .coolinput {
+.coolinput {
     display: flex;
     flex-direction: column;
     width: fit-content;
@@ -2384,7 +2507,7 @@
     max-width: 240px;
   }
   
-  .coolinput label.text {
+ .coolinput label.text {
     font-size: 0.75rem;
     color: #00000059;
     font-weight: 700;
@@ -2396,7 +2519,7 @@
     width: fit-content;
   }
   
-  .coolinput input.input {
+ .coolinput input.input {
     padding: 11px 30px;
     font-size: 0.75rem;
     border: 2px #00000070 solid;
@@ -2404,7 +2527,7 @@
     background: #e8e8e8;
   }
   
-  .coolinput input.input:focus {
+ .coolinput input.input:focus {
     outline: none;
   }
 
@@ -2502,7 +2625,6 @@ button {
 
 
 
-
   
 
   .content > *, .modal > * {
@@ -2590,6 +2712,7 @@ button {
     background-color: rgba(15, 14, 14, 0.423); 
 
   }
+
 
 
 
@@ -2963,6 +3086,7 @@ button {
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
 
+
   @media (prefers-reduced-motion: reduce) {
     .btn {
       transition: none;
@@ -3009,7 +3133,7 @@ button {
   .btn-primary:focus,
   .btn-primary.focus {
     color: #fff;
-    background-color: #e84a1567;
+    background-color: #e84a15;
     border-color: #dc4614;
     box-shadow: 0 0 0 0.2rem rgba(240, 123, 84, 0.5);
   }
@@ -11234,10 +11358,9 @@ button {
 
   .back-to-top {
     position: fixed;
-    display: none;
     right: 30px;
     bottom: 30px;
-    z-index: 11;
+    z-index: 1100;
     animation: action 1s infinite alternate;
   }
 
@@ -11463,17 +11586,25 @@ button {
     min-width: 300px;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 
   }
-  .cardbackgroundcolor{
-background-color: #34495e;
+
+  .modal-content-custom-admin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: #34495e;
+    padding: 14px 28px;
+    border-radius: 3px;
+    max-width: 600px;
+    min-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+
   }
-.card {
-  
-  background: rgb(236, 236, 236);
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-}
+
   .checkoutForm {
 
     width: 500px;
@@ -11483,7 +11614,7 @@ background-color: #34495e;
   .loginBox {
 
     background-color: var(--primary);
-    padding: 50px 30px 10px 30px;
+    padding: 60px 30px 10px 30px;
     width: 500px;
     height: 410px;
     justify-content: center;
@@ -11529,9 +11660,9 @@ background-color: #34495e;
 
   .singnUpBox {
     background-color: var(--primary);
-    padding: 40px 30px 10px 30px;
+    padding: 20px 30px 10px 30px;
     width: 500px;
-    height: 470px;
+    height: 450px;
     justify-content: center;
     position: absolute;
     top: 35%;
@@ -11586,12 +11717,7 @@ background-color: #34495e;
     overflow-y: auto;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 2);
   }
-  .card {
-    width: 190px;
-    height: 254px;
-    background: rgb(236, 236, 236);
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-  }
+
 
   .overlay-checkout {
     width: 100vw;
@@ -11620,4 +11746,71 @@ background-color: #34495e;
     right: 10px;
     left: 220px;
     padding: 10px 50px;
+  }
+
+
+  #search {
+    width: 50vh;
+    height: 33px;
+    margin-left: 10px;
+    margin-top: 5px;
+    border-radius: 50px 0px 0px 50px;
+    overflow: hidden;
+    border: none;
+    padding: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.80);
+
+  }
+
+
+  #searchBtn {
+    background-color: var(--primary);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.80);
+    overflow: hidden;
+    border: transparent;
+    border-radius: 0px 50px 50px 0px;
+    height: 33px;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg");
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 20px center;
+    padding-left: 60px;
+    margin-top: 5px;
+
+  }
+
+  #searchBtn:hover {
+    background-color: white;
+    cursor: pointer;
+
+  }
+
+  #searchBtn:active {
+    background-color: white;
+    box-shadow: 0 5px #533a71;
+    transform: translateY(4px);
+  }
+
+
+  .error-message {
+    color: var(--dark);
+    font-size: 15px;
+  }
+
+  .details:hover {
+    cursor: pointer;
+  }
+
+  input[type='file']::after {
+    content: 'Pick an image file';
+    color: black;
+    margin-right: 30px;
+
+  }
+
+  input[type='file'] {
+    overflow: hidden;
+    width: 110px;
+    padding-left: 8px;
+
   }
