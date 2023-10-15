@@ -1,0 +1,68 @@
+/* CSS for the modal overlay */
+.overlay-admin {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* CSS for the modal content */
+  .modal-box {
+    background-color: #34495e;
+    padding: 40px; /* Increased padding for better spacing */
+    border-radius: 8px;
+    max-width: 100%; /* Adjust as needed */
+    width: 900px; /* Adjust as needed */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.179);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Optional: Style for the close button */
+  .close-button {
+    cursor: pointer;
+    font-size: 20px;
+    color: #fff; /* White close button */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .close-button:hover {
+    color: #34495e;
+  }
+  
+  /* Style for the form inside the modal */
+  .modal-box form {
+    background-color: #34495e; /* Darker background for the form */
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%; /* Make form fill the width */
+    max-width: 800px; /* Limit the maximum width */
+    box-sizing: border-box;
+    margin-bottom: 20px; /* Add margin between forms */
+  }
+  
+  /* Style for form labels */
+  .modal-box label {
+    display: block; /* Display labels in a block */
+    margin-bottom: 10px; /* Add margin between labels */
+    font-size: 16px; /* Adjusted font size */
+    color: #fff; /* Label color */
+  }
+  
+  /* Style for form inputs */
+  .modal-box input, .modal-box select, .modal-box textarea {
+    width: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #createProductModal{
+    background-color: #34495e;
+  }
