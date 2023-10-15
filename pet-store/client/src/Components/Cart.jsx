@@ -96,8 +96,8 @@ const Cart = () => {
                     <div className="modal-checkout">
                         <div onClick={() => { navigate(0) }} className="overlay-checkout"></div>
                         <div className="modal-content-custom-cart-checkout">
-                            <h1 className="thanks">Thank you for your Business! Your order is on the way :{')'}</h1>
-                            <button className="close-modal-thanks btn btn-lg btn-dark px- d-none d-lg-block" onClick={() => { navigate(0) }}>
+                            <h1 className="thanks">Thank you for your Business! Your order is on the way!</h1>
+                            <button className="close-modal-thanks btn btn-lg btn-primary px- d-none d-lg-block" onClick={() => { navigate(0) }}>
                                 Back
                             </button>
                         </div>
