@@ -56,13 +56,13 @@ const Navbar = ({ handleSelect, onSearch }) => {
               <div className={`dropdown-menu  bg-dark  rounded-0 m-0 ${catsDropdownOpen ? "show" : ""
                 }`}
               >
-                <a href="#" className="dropdown-item" onClick={() => { navigate('/HomePage'); handleSelect({ category: "Toy", animal: "Cat" }) }}>
+                <a className="dropdown-item" onClick={() => { navigate('/HomePage'); handleSelect({ category: "Toy", animal: "Cat" }) }}>
                   Toys
                 </a>
-                <a href="#" className="dropdown-item" onClick={() => { navigate('/HomePage'); handleSelect({ category: "Food", animal: "Cat" }) }}>
+                <a className="dropdown-item" onClick={() => { navigate('/HomePage'); handleSelect({ category: "Food", animal: "Cat" }) }}>
                   Food
                 </a>
-                <a href="#" className="dropdown-item" onClick={() => { navigate('/HomePage'); handleSelect({ category: "Upholstery", animal: "Cat" }) }}>
+                <a className="dropdown-item" onClick={() => { navigate('/HomePage'); handleSelect({ category: "Upholstery", animal: "Cat" }) }}>
                   Upholstery
                 </a>
               </div>

@@ -76,7 +76,7 @@ const AdminUsersList = () => {
             <div className="admin-content">
                 <table className="admin-product-table">
                     <thead>
-                        <tr>
+                        <tr className="table-titles">
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
@@ -85,7 +85,7 @@ const AdminUsersList = () => {
                     </thead>
                     <tbody>
                         {customers.map((user, index) => (
-                            <tr key={index}>
+                            <tr className="table-content" key={index}>
                                 <td>{user.firstName}</td>
                                 <td>{user.lastName}</td>
                                 <td>{user.email}</td>
@@ -94,7 +94,11 @@ const AdminUsersList = () => {
                                         className="admin-delete-button"
                                         onClick={() => handleDeleteUser(user.id)}
                                     >
-                                        Delete
+                                        <span class="icon-wrapper">
+                                            <svg className="icon" width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M6 7V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V7M6 7H5M6 7H8M18 7H19M18 7H16M10 11V16M14 11V16M8 7V5C8 3.89543 8.89543 3 10 3H14C15.1046 3 16 3.89543 16 5V7M8 7H16" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                        </span>
                                     </button>
                                 </td>
                             </tr>
@@ -104,14 +108,14 @@ const AdminUsersList = () => {
                 {showConfirmationModal && selectedUser && (
                     <div className="modal-custom">
                         <div className="overlay" onClick={() => setShowConfirmationModal(false)}></div>
-                        <div className="modal-content-custom-cart">
+                        <div className="modal-content-custom-admin">
                             <div id="ConfirmationModal" className="confirmation-modal">
                                 <div className="confirmation-message">
                                     Are you sure you want to delete this user?
                                 </div>
                                 <div className="confirmation-buttons">
-                                    <button onClick={handleConfirmationConfirm}>Yes</button>
-                                    <button onClick={() => setShowConfirmationModal(false)}>No</button>
+                                    <button className='confirmation-button' onClick={handleConfirmationConfirm}>Yes</button>
+                                    <button className='confirmation-button' onClick={() => setShowConfirmationModal(false)}>No</button>
                                 </div>
                             </div>
                         </div>
